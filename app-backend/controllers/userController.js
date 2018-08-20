@@ -19,6 +19,7 @@ module.exports = {
 
   // Get one controller to return single user from DB
   getOne(req, res, next) {
+    const id = req.params.id;
     userModel.findById(id)
       .then(user => {
         res.locals.users = user;
@@ -29,12 +30,29 @@ module.exports = {
 
   // Register new user in DB
   createUser(req, res, next) {
-    
+    const user = req.body;
+    userModel.create(user)
+      .then(user => {
+        res.locals.users = user;
+      })
+      .catch(e => next(e));
   },
 
-//   // Update user information in DB
-//   updateUser(req, res, next) {
-    
-//   }
+  // Update user information in DB
+  updateUser(req, res, next) {
+    const id = req.params;
+    const data = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      cohort: req.body.cohort,
+      horoscope: req.body.horoscope,
+    }
+
+    userModel.update({ ...id, ...data })
+      .then(user => {
+        res.locals.users = user;
+        next();
+      });
+  }
     
 }

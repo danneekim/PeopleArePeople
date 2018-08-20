@@ -19,7 +19,7 @@ module.exports = {
     return db.one(`
         SELECT *
         FROM users
-        WHERE user.id = $1`, id)
+        WHERE id = $1`, id)
   },
 
   //register user in DB
@@ -27,8 +27,21 @@ module.exports = {
     return db.one(`
         INSERT INTO users (first_name, last_name, cohort, horoscope)
         VALUES ($/first_name/, $/last_name/, $/cohort/, $/horoscope/)
-        RETURNING *`, user)
+        RETURNING *`, user);
   },
+
+  update(user) {
+  
+    return db.one(`
+      UPDATE users
+      SET 
+      first_name = $/first_name/,
+      last_name = $/last_name/,
+      cohort = $/cohort/,
+      horoscope = $/horoscope/
+      WHERE users.id = $/id/
+      RETURNING *`, user);
+  }
 
       
 }
