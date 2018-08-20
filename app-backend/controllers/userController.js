@@ -11,7 +11,7 @@ module.exports = {
   getAll(req, res, next){
     userModel.index()
       .then(users => {
-        res.locals.users = user;
+        res.locals.users = users;
         next();
       })
       .catch(e => next(e));
