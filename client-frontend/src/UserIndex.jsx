@@ -8,7 +8,7 @@ function UserIndex(props) {
             props.users.map(user => {
                 return (
                     <div key={user}>
-                    {user}
+                    {user.first_name} {user.last_name}
                     </div>
                 )
             })

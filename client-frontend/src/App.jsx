@@ -17,13 +17,15 @@ class App extends Component {
     this.state = {
       currentView: 'SplashPage',
       users: ['elizabeth', 'fun', 'nofun'],
+      first_name: '',
+      last_name: '',
     }
   }
 
-  // componentDidMount() {
-  //   fetchUsers()
-  //     .then(data => this.setState({users: data.users}));
-  // }
+  componentDidMount() {
+    fetchUsers()
+      .then(data => this.setState({users: data.users}));
+  }
 
   createUser(user) {
     console.log(user)
@@ -53,7 +55,7 @@ class App extends Component {
       case 'SplashPage':
         return <SplashPage />;
       case 'NewUser':
-        return <NewUser />;
+        return <NewUser users={this.state.users}/>;
       case 'FilterPage':
         return <FilterPage />;
       case 'UserIndex':
