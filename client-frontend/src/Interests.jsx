@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './App.css';
+
 
 class Interests extends Component {
     constructor(props){
@@ -12,7 +14,7 @@ class Interests extends Component {
 
     render() {
         return(
-            <div>
+            <div className='interests'>
                 {/* Pick your favorite:{this.props.categories[0]} */}
                 <form>
                     {

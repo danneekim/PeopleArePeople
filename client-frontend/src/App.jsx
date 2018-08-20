@@ -82,11 +82,14 @@ class App extends Component {
     ];
 
     return (
-      <div>
+      <div className='bigContainer'>
+      <div className='Nav'>
+      {/* <div className='Nav'> */}
         <Header 
           onClick={this.handleLinkClick.bind(this)}
           links={links}/>
           {this.determineWhichToRender()}
+      </div>
       </div>
     )
   }
