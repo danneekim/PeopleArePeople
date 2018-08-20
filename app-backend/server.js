@@ -24,9 +24,9 @@ app.use(cors());
 
 // Routes Set up:
 const userRouter = require('./routers/userRoutes');
-const interestRouter = require('./routers/interestRoutes');
+// const interestRouter = require('./routers/interestRoutes');
 app.use('/users', userRouter);
-app.use('/interests', interestRouter);
+// app.use('/interests', interestRouter);
 
 // Error 404 Handler:
 app.get('*', (req, res) => {
