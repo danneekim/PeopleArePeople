@@ -28,9 +28,9 @@ module.exports = {
   },
 
   // Register new user in DB
-//   createUser(req, res, next) {
+  createUser(req, res, next) {
     
-//   },
+  },
 
 //   // Update user information in DB
 //   updateUser(req, res, next) {

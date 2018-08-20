@@ -23,9 +23,12 @@ module.exports = {
   },
 
   //register user in DB
-//   create(user) {
-    
-//   }
+  create(user) {
+    return db.one(`
+        INSERT INTO users (first_name, last_name, cohort, horoscope)
+        VALUES ($/first_name/, $/last_name/, $/cohort/, $/horoscope/)
+        RETURNING *`, user)
+  }
 
       
 }
