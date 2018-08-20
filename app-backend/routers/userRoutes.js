@@ -9,6 +9,9 @@ const userController = require('../controllers/userController')
     (req, res) => res.json({ users: res.locals.users })
     );
 
+    router.get('/:id', userController.getOne,
+    (req,res) => res.json({ users: res.locals.user})
+    );
 
     // ReactTweedr examples other CRUD paths:
     //Uncomment this line for posting new tweeds to the database:
