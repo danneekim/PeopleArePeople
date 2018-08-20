@@ -1,12 +1,76 @@
--- INSERT INTO <TABLENAME1> (table1column1, table1column2, ... ) VALUES
---     ('', '', ...),
---     ('', '', ...);
+INSERT INTO users (first_name, last_name, cohort, horoscope) VALUES
+    ('Waseem', 'Nafisi', 'WDI-Lambda', 'Cancer'),
+    ('Elizabeth', 'Fun', 'WDI-Lambda', 'Aries'),
+    ('Dannee', 'Kim', 'WDI-Lambda', 'Aquarius'),
+    ('Shawn', 'Hassen', 'WDI-Lambda', 'Aries'),
+    ('Shabba', 'Labba', 'WDI-Fake', 'Scorpio');
 
---     -- This is where we would insert values into our TABLENAME1 
+INSERT INTO interests (categories, interests) VALUES 
+    ('Food', 'Italian'),
+    ('Food', 'Mexican'),
+    ('Food', 'Mediterranean'),
+    ('Food', 'American'),
+    ('Food', 'Japanese'),
+    ('Food', 'Chinese'),
+    ('Food', 'Korean'),
+    ('Food', 'French'),
+    ('Food', 'Indian'),
+    ('Food', 'Thai'),
+    -- 1 through 10 are FOOD
+    ('Music', 'Hip-Pop'),
+    ('Music', 'R&B'),
+    ('Music', 'Alternative'),
+    ('Music', 'Country'),
+    ('Music', 'Rap'),
+    ('Music', 'Rock'),
+    ('Music', 'Acoustic'),
+    ('Music', 'Jazz'),
+    ('Music', 'Classical'),
+    ('Music', 'Gospel'),
+    -- 11 through 20 are MUSIC
+    ('Sports', 'Baseball'),
+    ('Sports', 'Basketball'),
+    ('Sports', 'Football'),
+    ('Sports', 'Soccer'),
+    ('Sports', 'Hockey'),
+    ('Sports', 'Tennis'),
+    ('Sports', 'Running'),
+    ('Sports', 'Lifting/Olympic'),
+    ('Sports', 'Yoga'),
+    ('Sports', 'Swimming'),
+    -- 21 through 30 are SPORTS
+    ('Movies', 'Action'),
+    ('Movies', 'Animation'),
+    ('Movies', 'Comedy'),
+    ('Movies', 'Documentary'),
+    ('Movies', 'Drama'),
+    ('Movies', 'Family'),
+    ('Movies', 'Horror'),
+    ('Movies', 'Sci-Fi'),
+    ('Movies', 'Romance'),
+    ('Movies', 'Thriller'),
+    -- 31 through 40 are MOVIES
+    ('DIY', 'Drawing'),
+    ('DIY', 'Painting'),
+    ('DIY', 'Singing'),
+    ('DIY', 'Playing Instruments'),
+    ('DIY', 'Carpentry'),
+    ('DIY', 'Coding'),
+    ('DIY', 'Designing'),
+    ('DIY', 'Brainstorm/Business'),
+    ('DIY', 'Writing'),
+    ('DIY', 'Reading'),
+    -- 41 through 50 are DIY-Hobbies
+    ('Pet-Peeves', 'Bad Grammar'),
+    ('Pet-Peeves', 'Inconsiderate Smokers'),
+    ('Pet-Peeves', 'Talking over people'),
+    ('Pet-Peeves', 'Duck Face'),
+    ('Pet-Peeves', 'Not covering mouth when sneezing/coughing'),
+    ('Pet-Peeves', 'Chewing with mouth open'),
+    ('Pet-Peeves', 'Slow Walkers'),
+    ('Pet-Peeves', 'Street Performers'),
+    ('Pet-Peeves', 'Brown Nosers'),
+    ('Pet-Peeves', 'Chronic Tardiness');
+    -- 51 through 60 are PET PEEVES
 
--- INSERT INTO <TABLENAME2> (table2column1, table2column2, ...) VALUES 
---     ('', '', ...),
---     ('', '', ...);
-
-    -- This is where we would insert values into our TABLENAME2
     
