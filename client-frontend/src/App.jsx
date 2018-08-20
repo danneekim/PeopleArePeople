@@ -1,20 +1,55 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Header from './Header';
+import SplashPage from './SplashPage';
+import NewUser from './NewUser';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentView: 'SplashPage'
+    }
+  }
+
+
+
+
+
+
+
+
+
+  determineWhichToRender() {
+    const { currentView } = this.state;
+    const { newUser } = this.state;
+
+    switch (currentView) {
+      case 'SplashPage':
+        return <SplashPage />;
+        break;
+      // case 'NewUser':
+      //   return <NewUser />;
+      //   break;
+    }
+  }
+
+  handleLinkClick(link) {
+    this.setState({currentView: link});
+  }
+
   render() {
+    const links = [
+      'SplashPage',
+      // 'NewUser',
+    ];
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Header links={links}/>
       </div>
-    );
+    )
   }
 }
 
