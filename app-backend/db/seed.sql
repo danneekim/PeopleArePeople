@@ -9,4 +9,3 @@
 --     ('', '', ...);
 
     -- This is where we would insert values into our TABLENAME2
-    

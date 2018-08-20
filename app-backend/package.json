@@ -8,7 +8,6 @@
     "db:create": "psql -d project3_db -f db/schema.sql",
     "db:seed": "psql -d project3_db -f db/seed.sql",
     "dev": "nodemon server.js"
-
   },
   "author": "",
   "license": "ISC",

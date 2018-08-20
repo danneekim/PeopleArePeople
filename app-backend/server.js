@@ -23,8 +23,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 
 // Routes Set up:
-const TABLE1Router = require('./routers/TABLE1router')
-app.use('/api/table1', TABLE1Router);
+const userRouter = require('./routers/userRoutes')
+app.use('/users', userRouter);
 
 // Error 404 Handler:
 app.get('*', (req, res) => {

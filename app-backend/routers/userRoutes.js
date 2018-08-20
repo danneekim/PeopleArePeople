@@ -1,16 +1,13 @@
 const router = require('express')();
-const TABLE1controller = require('../controllers/TABLE1controller')
+const userController = require('../controllers/userController')
 
 // This is where we would set up the approperiate paths for the data
 // that we stored in res.locals VIA controllers
-
-module.exports = {
-    // EX function:
     
-    // router.get('/',
-    // TABLE1controller.getAll,
-    // (req, res) => res.json({errthang: res.locals.errthang})    
-    // );
+    // Show all users 
+    router.get('/', userController.getAll,
+    (req, res) => res.json({ users: res.locals.users })
+    );
 
 
     // ReactTweedr examples other CRUD paths:
@@ -23,4 +20,4 @@ module.exports = {
     //Uncomment this line for deleting tweeds:
     //tweedRoutes.delete('/:id', tweedsController.destroy);
 
-}
+module.exports = router;
