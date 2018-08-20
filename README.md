@@ -28,6 +28,12 @@ Our app connects like-minded students together efficiently, because who has time
 
 ![friend_app6](https://media.git.generalassemb.ly/user/14895/files/a13caee4-a45f-11e8-9d97-9970f702c4d8)
 
+## MVP:
+
+1. You're able to create a username with interests. (C, R).
+2. You're able to update interests (U, R).
+3. You're able to delete interests (D, R).
+4. You can filter on categories and subcategories to see all users related to your interests (R).
 
 Project 3 - Group 6 - WDI Lambda
 
