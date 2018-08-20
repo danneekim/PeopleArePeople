@@ -11,8 +11,9 @@ import {
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+ constructor(props) {
+   super(props);
+
 
     this.state = {
       currentView: 'SplashPage',
@@ -45,6 +46,40 @@ class App extends Component {
 
 
 
+
+<<<<<<< HEAD
+
+ determineWhichToRender() {
+   const { currentView } = this.state;
+   // const { NewUser } = this.state;
+
+   switch (currentView) {
+     case 'SplashPage':
+       return <SplashPage />;
+     
+     case 'NewUser':
+       return <NewUser />;
+   }
+ }
+
+ handleLinkClick(links) {
+   this.setState({currentView: links});
+ }
+
+ render() {
+   const links = [
+     'NewUser',
+   ];
+
+   return (
+     <div>
+       <Header
+         onClick={this.handleLinkClick.bind(this)}
+         links={links}/>
+     </div>
+   )
+ }
+=======
   determineWhichToRender() {
     const { currentView } = this.state;
     // const { user } = this.state;
@@ -82,6 +117,7 @@ class App extends Component {
       </div>
     )
   }
+>>>>>>> 1f462296c6a75854e8d684ac158b3fc80c4b80a7
 }
 
 export default App;
