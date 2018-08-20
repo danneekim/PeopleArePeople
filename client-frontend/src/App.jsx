@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import Header from './Header';
 import SplashPage from './SplashPage';
 import NewUser from './NewUser';
+import UserIndex from './UserIndex';
+import FilterPage from './FilterPage';
+import {
+  fetchUsers,
+  saveUser,
+} from './services/api';
 import './App.css';
 
 class App extends Component {
@@ -9,8 +15,26 @@ class App extends Component {
     super(props);
 
     this.state = {
-      currentView: 'SplashPage'
+      currentView: 'SplashPage',
+      users: ['elizabeth', 'fun', 'nofun'],
     }
+  }
+
+  // componentDidMount() {
+  //   fetchUsers()
+  //     .then(data => this.setState({users: data.users}));
+  // }
+
+  createUser(user) {
+    console.log(user)
+    saveUser(user)
+    .then(data => fetchUsers())
+    .then(data => {
+      this.setState({
+        currentView: 'UserIndex',
+        users: data.users
+      });
+    });
   }
 
 
@@ -23,31 +47,38 @@ class App extends Component {
 
   determineWhichToRender() {
     const { currentView } = this.state;
-    const { newUser } = this.state;
+    // const { user } = this.state;
 
     switch (currentView) {
       case 'SplashPage':
         return <SplashPage />;
-        break;
-      // case 'NewUser':
-      //   return <NewUser />;
-      //   break;
+      case 'NewUser':
+        return <NewUser />;
+      case 'FilterPage':
+        return <FilterPage />;
+      case 'UserIndex':
+        return <UserIndex users={this.state.users} />;
     }
   }
 
-  handleLinkClick(link) {
-    this.setState({currentView: link});
+  handleLinkClick(links) {
+    this.setState({currentView: links});
   }
 
   render() {
     const links = [
       'SplashPage',
-      // 'NewUser',
+      'NewUser',
+      'FilterPage',
+      'UserIndex'
     ];
 
     return (
       <div>
-        <Header links={links}/>
+        <Header 
+          onClick={this.handleLinkClick.bind(this)}
+          links={links}/>
+          {this.determineWhichToRender()}
       </div>
     )
   }
