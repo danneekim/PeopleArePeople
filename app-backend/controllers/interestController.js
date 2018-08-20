@@ -23,5 +23,15 @@ module.exports = {
             .catch(e => next(e));
     },
 
+    // Returns the interest by their id
+    getOne(req,res,next){
+        interestModel.findById(req.params.id)
+            .then(interest => {
+                res.locals.interest = interest;
+                next();
+            })
+            .catch(e => next(e));
+    },
+
 
 }
