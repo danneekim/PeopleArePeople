@@ -27,4 +27,6 @@ module.exports = {
         , id);
     },
 
+    destroy()
+
 }
