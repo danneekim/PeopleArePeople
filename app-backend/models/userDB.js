@@ -28,7 +28,7 @@ module.exports = {
         INSERT INTO users (first_name, last_name, cohort, horoscope)
         VALUES ($/first_name/, $/last_name/, $/cohort/, $/horoscope/)
         RETURNING *`, user)
-  }
+  },
 
       
 }
