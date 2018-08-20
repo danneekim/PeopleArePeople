@@ -93,10 +93,6 @@ class App extends Component {
       </div>
     )
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> frontA
 }
 
 export default App;
