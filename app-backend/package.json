@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:create": "psql -d project3_db -f db/schema.sql && psql -d project3_db -f db/seed.sql",
+    "db:create": "psql -d project3_db -f db/schema.sql",
+    "db:seed": "psql -d project3_db -f db/seed.sql",
     "dev": "nodemon server.js"
 
   },
