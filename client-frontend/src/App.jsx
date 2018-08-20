@@ -4,6 +4,7 @@ import SplashPage from './SplashPage';
 import NewUser from './NewUser';
 import UserIndex from './UserIndex';
 import FilterPage from './FilterPage';
+import Interests from './Interests';
 import {
   fetchUsers,
   saveUser,
@@ -13,14 +14,11 @@ import './App.css';
 class App extends Component {
  constructor(props) {
    super(props);
-
-
     this.state = {
       currentView: 'SplashPage',
-      users: ['elizabeth', 'fun', 'nofun'],
-      first_name: '',
-      last_name: '',
+      users: [],
     }
+    this.beginInterestFill = this.beginInterestFill.bind(this);
   }
 
   componentDidMount() {
@@ -40,12 +38,11 @@ class App extends Component {
     });
   }
 
-
-
-
-
-
-
+  beginInterestFill() {
+    this.setState({
+      currentView: 'Interests'
+    })
+  }
 
 
 
@@ -57,11 +54,17 @@ class App extends Component {
       case 'SplashPage':
         return <SplashPage />;
       case 'NewUser':
-        return <NewUser users={this.state.users}/>;
+        return <NewUser 
+                  onSubmit={this.createUser} 
+                  onClick={this.handleLinkClick.bind(this)}
+                  beginInterestFill = {this.beginInterestFill}
+              />;
       case 'FilterPage':
         return <FilterPage />;
       case 'UserIndex':
         return <UserIndex users={this.state.users} />;
+      case 'Interests':
+        return <Interests />;
     }
   }
 
@@ -74,7 +77,8 @@ class App extends Component {
       'SplashPage',
       'NewUser',
       'FilterPage',
-      'UserIndex'
+      'UserIndex',
+      'Interests'
     ];
 
     return (
