@@ -31,10 +31,10 @@ module.exports = {
   // Register new user in DB
   createUser(req, res, next) {
     const user = req.body;
-    console.log(user);
     userModel.create(user)
       .then(user => {
-        res.locals.users = user;
+        res.locals.users = user; 
+        next();
       })
       .catch(e => next(e));
   },

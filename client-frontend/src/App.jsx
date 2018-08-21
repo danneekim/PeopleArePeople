@@ -11,6 +11,7 @@ import {
   fetchInterestsByCategory,
 } from './services/api';
 import './App.css';
+import { debug } from 'util';
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends Component {
       interests: [],
       categories: [],
     }
-    this.beginInterestFill = this.beginInterestFill.bind(this);
+    this.createUser = this.createUser.bind(this);
     this.callingInterests = this.callingInterests.bind(this);
   }
 
@@ -42,20 +43,19 @@ class App extends Component {
   createUser(user) {
     console.log(user)
     saveUser(user)
-      .then(data => fetchUsers())
-      .then(data => {
+    .then(data => fetchUsers())
+    .then(data => {
         this.setState({
-          currentView: 'UserIndex',
-          users: data.users
+          currentView: 'Interests',
+          users: data,
         });
-      });
+      })
+      .catch(e =>{
+        console.log(e);
+      })
   }
 
-  beginInterestFill() {
-    this.setState({
-      currentView: 'Interests'
-    })
-  }
+ 
 
 
 
@@ -70,12 +70,12 @@ class App extends Component {
         return <NewUser
           onSubmit={this.createUser}
           onClick={this.handleLinkClick.bind(this)}
-          beginInterestFill={this.beginInterestFill}
+
         />;
       case 'FilterPage':
         return <FilterPage />;
       case 'UserIndex':
-        return <UserIndex users={user.users} />;
+        return <UserIndex users={this.state.users} />;
       case 'Interests':
         return <Interests interests={this.state.interests} callingInterests={this.callingInterests}/>; //don't need to put state because it's a function
       default:

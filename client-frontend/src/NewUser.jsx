@@ -18,7 +18,7 @@ class NewUser extends Component{
     handleSubmit(e) {
         e.preventDefault();
         this.props.onSubmit(this.state);
-        this.props.beginInterestFill();
+
     }
 
     handleChange(e){
