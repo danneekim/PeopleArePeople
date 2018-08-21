@@ -3,37 +3,54 @@ import './App.css';
 
 
 class Interests extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            categories: ['food', 'movies', 'music'],
-            interests: ['Mexican', 'Italian', 'Chinese', 'French', 'Thai']
+            hereCategory: [],
+            allCategories: ['Music', 'Sports', 'Movies', 'DIY', 'Pet Peeves'],
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({ hereCategory: 'Food' });
+        this.props.callingInterests('Food');
     }
 
 
+    handleSubmit(e) {
+        e.preventDefault();
+        this.setState({
+            hereCategory: this.state.allCategories[0]
+        })
+        this.props.callingInterests(this.state.allCategories[0]);
+    }
+
     render() {
-        return(
+        return (
             <div className='interests'>
-                {/* Pick your favorite:{this.props.categories[0]} */}
-                <form>
+                <div>
+                    {this.state.hereCategory}
+                </div>
+                <form onSubmit={this.handleSubmit}>
                     {
-                    this.state.interests.map(interest => {
-                        return(
-                            <div>
-                            <label key={interest.id}>{interest}</label>
-                            <input 
-                                type="checkbox" 
-                                id={interest.id} 
-                                name="food" 
-                                value={interest.id} 
-                            />
-                            <br></br>
-                            </div>
-                        )
-                    })
+                        this.props.interests.map(interest => {
+                            return (
+                                <div>
+
+                                    <label key={interest.id}>{interest.interests}</label>
+                                    <input
+                                        type="checkbox"
+                                        id={interest.id}
+                                        name="food"
+                                        value={interest.id}
+                                    />
+                                    <br></br>
+                                </div>
+                            )
+                        })
                     }
-             
+                    <input type='submit'></input>
                 </form>
             </div>
         )

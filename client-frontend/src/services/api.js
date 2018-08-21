@@ -20,3 +20,14 @@ export function saveUser(user) {
     return fetch(`${BASE_URL}/users`, opts)
         .then(resp => resp.json());
 }
+
+
+
+
+export function fetchInterestsByCategory(category) {
+    return fetch(`${BASE_URL}/interests/${category}`)
+        .then(resp => resp.json())
+        .catch(err => {
+            throw Error(err);
+        });
+}
