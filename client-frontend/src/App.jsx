@@ -8,6 +8,7 @@ import Interests from './Interests';
 import {
   fetchUsers,
   saveUser,
+  fetchInterestsByCategory,
 } from './services/api';
 import './App.css';
 
@@ -17,27 +18,43 @@ class App extends Component {
     this.state = {
       currentView: 'SplashPage',
       users: [],
-      again: [1,2,3],
+      interests: [],
+      categories: [],
     }
     this.beginInterestFill = this.beginInterestFill.bind(this);
+    this.callingInterests = this.callingInterests.bind(this);
+    this.fetchAllUsers = this.fetchAllUsers.bind(this);
+  }
+
+  fetchAllUsers(){
+    fetchUsers()
+    .then(user => {
+      this.setState({
+        users: user
+      })
+    })
   }
 
   componentDidMount() {
-    fetchUsers()
-      .then(data => this.setState({users: data}));
+    this.fetchAllUsers();
+  }
+
+  callingInterests(category) {
+    fetchInterestsByCategory(category) 
+        .then(data => this.setState({interests: data}));
   }
 
   createUser(user) {
     console.log(user)
     saveUser(user)
-    .then(data => fetchUsers())
-    .then(data => {
-      this.setState({
-        currentView: 'UserIndex',
-        users: data.users
-      });
-    });
+    .then(res => {
+      this.fetchAllUsers()
+    })
   }
+
+  
+      
+
 
   beginInterestFill() {
     this.setState({
@@ -49,7 +66,7 @@ class App extends Component {
 
   determineWhichToRender() {
     const { currentView } = this.state;
-    // const { user } = this.state;
+    const { user } = this.state;
 
     switch (currentView) {
       case 'SplashPage':
@@ -59,13 +76,17 @@ class App extends Component {
                   onSubmit={this.createUser} 
                   onClick={this.handleLinkClick.bind(this)}
                   beginInterestFill = {this.beginInterestFill}
+                  fetchAllUsers={this.fetchAllUsers}
               />;
       case 'FilterPage':
         return <FilterPage />;
       case 'UserIndex':
         return <UserIndex users={this.state.users} />;
       case 'Interests':
-        return <Interests />;
+        return <Interests 
+                  interests={this.state.interests} 
+                  callingInterests={this.callingInterests}
+                />;
     }
   }
 
