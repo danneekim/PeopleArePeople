@@ -55,14 +55,6 @@ class App extends Component {
   }
 
 
-  
-      
-
-
-
-
-
-
   determineWhichToRender() {
     const { currentView } = this.state;
     const { user } = this.state;

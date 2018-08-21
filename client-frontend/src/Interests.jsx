@@ -14,14 +14,18 @@ class Interests extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-
+    
+    // Reference this.selectCheckboxes from: http://react.tips/checkboxes-in-react/
     componentDidMount() {
         this.setState({ hereCategory: 'Food' })
         this.props.callingInterests('Food');
+        this.selectCheckboxes = new Set();
     }
 
     handleSubmit(e) {
         e.preventDefault();
+
+        console.log(this.selectCheckboxes);
 
         this.setState({
             hereCategory: this.state.allCategories[0]
@@ -30,13 +34,21 @@ class Interests extends Component {
     }
 
     handleChange(e) {
-       const { name } = e.target;
+       const id = e.target.value;
        const { interests } =  this.props.interests 
-       if(e.target.checked) {
-           this.setState(prevState => ({interests: [...prevState.interests, name]}))
+
+       if (this.selectCheckboxes.has(id)) {
+         this.selectCheckboxes.delete(id);
        } else {
-           this.setState(prevState => ({interests: prevState.interests.filter(el => el!== name)}))
+         this.selectCheckboxes.add(id);
        }
+       console.log(this.selectCheckboxes)
+       
+    //    if(e.target.checked) {
+    //        this.setState(prevState => ({interests: [...prevState.interests, name]}))
+    //    } else {
+    //        this.setState(prevState => ({interests: prevState.interests.filter(el => el!== name)}))
+    //    }
     }
 
     render() {
@@ -49,6 +61,7 @@ class Interests extends Component {
                 <form onSubmit={this.handleSubmit}>
                     {
                     this.props.interests.map(interest => {
+                        console.log(interest)
                         return(
                             <div>
                             <label key={interest.id}>{interest.interests}</label>
