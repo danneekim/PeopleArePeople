@@ -26,17 +26,16 @@ class App extends Component {
     this.callingInterests = this.callingInterests.bind(this);
   }
 
+
+
   componentDidMount() {
     fetchUsers()
-      .then(data => this.setState({ users: data }));
-
-    fetchInterestsByCategory('Food')
-      .then(data => this.setState({ interests: data }))
+    .then(data => this.setState({ users: data}))
   }
 
   callingInterests(category) {
-    fetchInterestsByCategory(category)
-    .then(data => this.setState({ interests: data }))
+    fetchInterestsByCategory(category) 
+        .then(data => this.setState({interests: data}));
   }
 
 
@@ -45,17 +44,22 @@ class App extends Component {
     saveUser(user)
     .then(data => fetchUsers())
     .then(data => {
-        this.setState({
-          currentView: 'Interests',
-          users: data,
-        });
+      this.setState({
+        currentView: "Interests",
+        users: data,
       })
-      .catch(e =>{
-        console.log(e);
-      })
+    })
+    .catch(e => {
+      console.log(e);
+    })
   }
 
- 
+
+  
+      
+
+
+
 
 
 
@@ -70,7 +74,6 @@ class App extends Component {
         return <NewUser
           onSubmit={this.createUser}
           onClick={this.handleLinkClick.bind(this)}
-
         />;
       case 'FilterPage':
         return <FilterPage />;
@@ -80,6 +83,7 @@ class App extends Component {
         return <Interests interests={this.state.interests} callingInterests={this.callingInterests}/>; //don't need to put state because it's a function
       default:
       }
+
   }
 
   handleLinkClick(links) {

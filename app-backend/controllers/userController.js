@@ -8,7 +8,7 @@ const userModel = require('../models/userDB')
 module.exports = {
 
   // Get all controller to return all users from DB
-  getAll(req, res, next){
+  getAll(req, res, next) {
     userModel.index()
       .then(users => {
         res.locals.users = users;
@@ -54,6 +54,18 @@ module.exports = {
         res.locals.users = user;
         next();
       });
+  },
+
+  /*JOIN START HERE: */
+
+  getAllUserInterests(req, res, next) {
+    const id = req.params.id;
+    userModel.findUserInterests(id)
+      .then(user => {
+        res.locals.users = user
+        next();
+      })
+      .catch(e => next(e));
   }
-    
+
 }
