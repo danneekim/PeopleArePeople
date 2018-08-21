@@ -21,22 +21,15 @@ class App extends Component {
       interests: [],
       categories: [],
     }
-    this.beginInterestFill = this.beginInterestFill.bind(this);
     this.callingInterests = this.callingInterests.bind(this);
-    this.fetchAllUsers = this.fetchAllUsers.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
-  fetchAllUsers(){
-    fetchUsers()
-    .then(user => {
-      this.setState({
-        users: user
-      })
-    })
-  }
+
 
   componentDidMount() {
-    this.fetchAllUsers();
+    fetchUsers()
+    .then(data => this.setState({ users: data}))
   }
 
   callingInterests(category) {
@@ -47,8 +40,15 @@ class App extends Component {
   createUser(user) {
     console.log(user)
     saveUser(user)
-    .then(res => {
-      this.fetchAllUsers()
+    .then(data => fetchUsers())
+    .then(data => {
+      this.setState({
+        currentView: "Interests",
+        users: data,
+      })
+    })
+    .catch(e => {
+      console.log(e);
     })
   }
 
@@ -56,11 +56,7 @@ class App extends Component {
       
 
 
-  beginInterestFill() {
-    this.setState({
-      currentView: 'Interests'
-    })
-  }
+
 
 
 
@@ -75,8 +71,6 @@ class App extends Component {
         return <NewUser 
                   onSubmit={this.createUser} 
                   onClick={this.handleLinkClick.bind(this)}
-                  beginInterestFill = {this.beginInterestFill}
-                  fetchAllUsers={this.fetchAllUsers}
               />;
       case 'FilterPage':
         return <FilterPage />;
