@@ -21,7 +21,6 @@ CREATE TABLE interests (
 );
 
 CREATE TABLE user_interest (
-    id SERIAL PRIMARY KEY,
     users_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
     interest_id INTEGER REFERENCES interests (id) ON DELETE CASCADE
 );
