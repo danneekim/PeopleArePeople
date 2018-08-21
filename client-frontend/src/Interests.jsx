@@ -8,8 +8,11 @@ class Interests extends Component {
         this.state = {
             hereCategory: [],
             allCategories: ['Music', 'Sports', 'Movies', 'DIY', 'Pet-Peeves'],
+            checkedItems: [],
+        
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -19,10 +22,21 @@ class Interests extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+
         this.setState({
             hereCategory: this.state.allCategories[0]
         })
         this.props.callingInterests(this.state.allCategories[0]);
+    }
+
+    handleChange(e) {
+       const { name } = e.target;
+       const { interests } =  this.props.interests 
+       if(e.target.checked) {
+           this.setState(prevState => ({interests: [...prevState.interests, name]}))
+       } else {
+           this.setState(prevState => ({interests: prevState.interests.filter(el => el!== name)}))
+       }
     }
 
     render() {
@@ -41,8 +55,9 @@ class Interests extends Component {
                             <input 
                                 type="checkbox" 
                                 id={interest.id} 
-                                name="food" 
+                                name={this.state.hereCategory}
                                 value={interest.id} 
+                                onChange={this.handleChange}
                             />
                             <br></br>
                             </div>
