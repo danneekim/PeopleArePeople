@@ -66,6 +66,24 @@ module.exports = {
         next();
       })
       .catch(e => next(e));
+  },
+
+//   createUserInterests(req, res, next) {
+//     const userInterests = req.body;
+//     const id = req.params
+//   }
+
+  destroyUserInterest(req, res) {
+    const userId = req.params;
+    const interestId = req.body;
+    userModel.deleteUserInterest({ ...userId, ...interestId })
+      .then(() => {
+        res.json({ message: 'Interest deleted' });
+      })
+      .catch(e => {
+        console.log(e);
+        res.status(400).json(e);
+      });
   }
 
 }
