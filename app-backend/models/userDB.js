@@ -61,5 +61,15 @@ module.exports = {
 
 
 
-      
+//   saveUserInterests(userInterests) {
+
+//   }
+
+  deleteUserInterest(id) {
+    return db.none(`
+        DELETE FROM user_interest ui
+        WHERE ui.interest_id = $/interest_id/
+        AND ui.users_id = $/id/`, id)
+  }
+
 }
