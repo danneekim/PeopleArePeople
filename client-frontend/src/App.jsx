@@ -17,13 +17,14 @@ class App extends Component {
     this.state = {
       currentView: 'SplashPage',
       users: [],
+      again: [1,2,3],
     }
     this.beginInterestFill = this.beginInterestFill.bind(this);
   }
 
   componentDidMount() {
     fetchUsers()
-      .then(data => this.setState({users: data.users}));
+      .then(data => this.setState({users: data}));
   }
 
   createUser(user) {
