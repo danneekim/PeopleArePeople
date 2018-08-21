@@ -12,7 +12,7 @@ const userController = require('../controllers/userController')
   );
 
   router.post('/', userController.createUser,
-    (req, res) => res.json({ user: res.locals.users })
+    (req, res) => res.json(res.locals.users)
   );
 
   router.get('/:id', userController.getOne,
