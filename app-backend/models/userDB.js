@@ -41,7 +41,25 @@ module.exports = {
       horoscope = $/horoscope/
       WHERE users.id = $/id/
       RETURNING *`, user);
-  }
+  },
+
+  /*
+  JOINS START HERE:
+  */
+
+  findUserInterests(id){
+    return db.many(`
+    SELECT interests
+    FROM interests i
+    JOIN user_interest ui
+    ON i.id = ui.interest_id
+    JOIN users u
+    ON ui.users_id = u.id
+    WHERE u.id = $1`
+    , id);
+  },
+
+
 
       
 }

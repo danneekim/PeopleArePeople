@@ -74,7 +74,7 @@ INSERT INTO interests (categories, interests) VALUES
     -- 51 through 60 are PET PEEVES
 
 
-INSERT INTO user_interest( users_id, interest_id) VALUES    
+INSERT INTO user_interest(users_id, interest_id) VALUES    
     ('1','5'),
     ('1', '13'),
     ('1', '27'),
