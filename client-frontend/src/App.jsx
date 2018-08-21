@@ -8,6 +8,7 @@ import Interests from './Interests';
 import {
   fetchUsers,
   saveUser,
+  fetchInterestsByCategory,
 } from './services/api';
 import './App.css';
 
@@ -17,14 +18,23 @@ class App extends Component {
     this.state = {
       currentView: 'SplashPage',
       users: [],
-      again: [1,2,3],
+      interests: [],
+      categories: [],
     }
-    this.beginInterestFill = this.beginInterestFill.bind(this);
+    this.callingInterests = this.callingInterests.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
+
+
 
   componentDidMount() {
     fetchUsers()
-      .then(data => this.setState({users: data}));
+    .then(data => this.setState({ users: data}))
+  }
+
+  callingInterests(category) {
+    fetchInterestsByCategory(category) 
+        .then(data => this.setState({interests: data}));
   }
 
   createUser(user) {
@@ -33,23 +43,26 @@ class App extends Component {
     .then(data => fetchUsers())
     .then(data => {
       this.setState({
-        currentView: 'UserIndex',
-        users: data.users
-      });
-    });
-  }
-
-  beginInterestFill() {
-    this.setState({
-      currentView: 'Interests'
+        currentView: "Interests",
+        users: data,
+      })
+    })
+    .catch(e => {
+      console.log(e);
     })
   }
+
+  
+      
+
+
+
 
 
 
   determineWhichToRender() {
     const { currentView } = this.state;
-    // const { user } = this.state;
+    const { user } = this.state;
 
     switch (currentView) {
       case 'SplashPage':
@@ -58,14 +71,16 @@ class App extends Component {
         return <NewUser 
                   onSubmit={this.createUser} 
                   onClick={this.handleLinkClick.bind(this)}
-                  beginInterestFill = {this.beginInterestFill}
               />;
       case 'FilterPage':
         return <FilterPage />;
       case 'UserIndex':
         return <UserIndex users={this.state.users} />;
       case 'Interests':
-        return <Interests />;
+        return <Interests 
+                  interests={this.state.interests} 
+                  callingInterests={this.callingInterests}
+                />;
     }
   }
 
