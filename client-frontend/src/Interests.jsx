@@ -3,7 +3,7 @@ import './App.css';
 
 
 class Interests extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             hereCategory: [],
@@ -25,10 +25,8 @@ class Interests extends Component {
         this.props.callingInterests(this.state.allCategories[0]);
     }
 
-
-
     render() {
-        return(
+        return (
             <div className='interests'>
             <div>     
                {this.state.hereCategory} 

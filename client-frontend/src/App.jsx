@@ -11,18 +11,19 @@ import {
   fetchInterestsByCategory,
 } from './services/api';
 import './App.css';
+import { debug } from 'util';
 
 class App extends Component {
- constructor(props) {
-   super(props);
+  constructor(props) {
+    super(props);
     this.state = {
       currentView: 'SplashPage',
       users: [],
       interests: [],
       categories: [],
     }
-    this.callingInterests = this.callingInterests.bind(this);
     this.createUser = this.createUser.bind(this);
+    this.callingInterests = this.callingInterests.bind(this);
   }
 
 
@@ -36,6 +37,7 @@ class App extends Component {
     fetchInterestsByCategory(category) 
         .then(data => this.setState({interests: data}));
   }
+
 
   createUser(user) {
     console.log(user)
@@ -51,6 +53,7 @@ class App extends Component {
       console.log(e);
     })
   }
+
 
   
       
@@ -68,24 +71,23 @@ class App extends Component {
       case 'SplashPage':
         return <SplashPage />;
       case 'NewUser':
-        return <NewUser 
-                  onSubmit={this.createUser} 
-                  onClick={this.handleLinkClick.bind(this)}
-              />;
+        return <NewUser
+          onSubmit={this.createUser}
+          onClick={this.handleLinkClick.bind(this)}
+        />;
       case 'FilterPage':
         return <FilterPage />;
       case 'UserIndex':
         return <UserIndex users={this.state.users} />;
       case 'Interests':
-        return <Interests 
-                  interests={this.state.interests} 
-                  callingInterests={this.callingInterests}
-                />;
-    }
+        return <Interests interests={this.state.interests} callingInterests={this.callingInterests}/>; //don't need to put state because it's a function
+      default:
+      }
+
   }
 
   handleLinkClick(links) {
-    this.setState({currentView: links});
+    this.setState({ currentView: links });
   }
 
   render() {
@@ -99,13 +101,13 @@ class App extends Component {
 
     return (
       <div className='bigContainer'>
-      <div className='Nav'>
-      {/* <div className='Nav'> */}
-        <Header 
-          onClick={this.handleLinkClick.bind(this)}
-          links={links}/>
+        <div className='Nav'>
+          {/* <div className='Nav'> */}
+          <Header
+            onClick={this.handleLinkClick.bind(this)}
+            links={links} />
           {this.determineWhichToRender()}
-      </div>
+        </div>
       </div>
     )
   }

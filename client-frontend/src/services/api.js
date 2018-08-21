@@ -21,6 +21,7 @@ export function saveUser(user) {
         .then(resp => resp.json());
 }
 
+
 // export function fetchInterests() {
 //     return fetch(`${BASE_URL}/interests`)
 //         .then(resp => resp.json())
@@ -28,6 +29,7 @@ export function saveUser(user) {
 //             throw Error(err);
 //         });
 // }
+
 
 
 export function fetchInterestsByCategory(category) {

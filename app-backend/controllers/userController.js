@@ -33,7 +33,8 @@ module.exports = {
     const user = req.body;
     userModel.create(user)
       .then(user => {
-        res.locals.users = user;
+        res.locals.users = user; 
+        next();
       })
       .catch(e => next(e));
   },
