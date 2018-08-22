@@ -29,7 +29,8 @@ router.get('/:id/interests', userController.getAllUserInterests,
 
 router.delete('/:id/interests', userController.destroyUserInterest);
 
-// router.post('/:id/interests')
+router.post('/interests', userController.createUserInterests,
+    (req, res) => res.json(res.locals.userInterests))
 
 
 
