@@ -14,6 +14,7 @@ import {
 } from './services/api';
 import './App.css';
 import { debug } from 'util';
+import EditUserInfo from './EditUserInfo';
 
 class App extends Component {
   constructor(props) {
@@ -24,9 +25,11 @@ class App extends Component {
       interests: [],
       categories: [],
       checkedInterests: [],
+      idToEdit: '',
     }
     this.createUser = this.createUser.bind(this);
     this.callingInterests = this.callingInterests.bind(this);
+    this.setIdToEdit = this.setIdToEdit.bind(this);
   }
 
 
@@ -39,6 +42,13 @@ class App extends Component {
   callingInterests(category) {
     fetchInterestsByCategory(category) 
         .then(data => this.setState({interests: data}));
+  }
+
+  setIdToEdit(id){
+    this.setState({
+      idToEdit: id,
+      currentView: "EditUserInfo",
+    })
   }
 
 
@@ -88,7 +98,10 @@ class App extends Component {
       case 'FilterPage':
         return <FilterPage />;
       case 'UserIndex':
-        return <UserIndex users={this.state.users} />;
+        return <UserIndex 
+          users={this.state.users} 
+          setIdToEdit={this.setIdToEdit}
+          />;
       case 'Interests':
         return <Interests 
                 users={this.state.users}
@@ -96,6 +109,11 @@ class App extends Component {
                 callingInterests={this.callingInterests}
                 onSubmit={this.createInterests}
                 />; //don't need to put state because it's a function
+      case 'EditUserInfo':
+        return <EditUserInfo    
+            users={this.state.users}
+            idToEdit={this.state.idToEdit}
+        />
       default:
       }
 
