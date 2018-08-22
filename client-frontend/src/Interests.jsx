@@ -11,6 +11,8 @@ class Interests extends Component {
             allCategories: ['Music', 'Sports', 'Movies', 'DIY', 'Pet-Peeves'],
             checkedItems: [],
             userId: '',
+            userFirstName: '',
+            userLastName: '',
         
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,6 +23,8 @@ class Interests extends Component {
         this.props.users.map( user => {
             if (user.id === (this.props.users.length )) {
                 this.setState({ userId: user.id})
+                this.setState({ userFirstName: user.first_name})
+                this.setState({ userLastName: user.last_name})
             }
         })
     }
@@ -46,27 +50,29 @@ class Interests extends Component {
 
         this.setState({ checkedItems: [] })
         this.unCheck();
-        if ({hereCategory: "Food"}) {
+
+        const here = this.state.hereCategory;
+        if (here === "Food") {
             this.setState({
                 hereCategory: "Music"
             })
             this.props.callingInterests(this.state.allCategories[0])
-        } else if ({hereCategory: "Music"}) {
+        } else if (here === "Music") {
             this.setState({
                 hereCategory: "Sports"
             })
             this.props.callingInterests(this.state.allCategories[1])
-        }   else if ({hereCategory: "Sports"}) {
+        }   else if (here === "Sports") {
             this.setState({
                 hereCategory: "Movies"
             })
             this.props.callingInterests(this.state.allCategories[2])
-        }   else if ({hereCategory: "Movies"}) {
+        }   else if (here === "Movies") {
             this.setState({
                 hereCategory: "DIY"
             })
             this.props.callingInterests(this.state.allCategories[3])
-        }   else if ({hereCategory: "DIY"}) {
+        }   else if (here === "DIY") {
             this.setState({
                 hereCategory: "Pet-Peeves"
             })
@@ -97,8 +103,14 @@ class Interests extends Component {
     render() {
         return (
             <div className='interests'>
-            <div>     
+            <div>   
+                <div>  
+                    Welcome {this.state.userFirstName} {this.state.userLastName}, tell us more about your self:
+                </div><br></br>
+
                {this.state.hereCategory} 
+               <br></br><br></br>
+
             </div>
 
                 <form onSubmit={this.handleSubmit}>

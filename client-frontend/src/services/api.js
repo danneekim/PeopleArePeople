@@ -32,7 +32,7 @@ export function saveInterests(interests) {
             'Content-Type': 'application/json'
         }
     }
-    return fetch(`${BASE_URL}/users/:id/interests`, opts)
+    return fetch(`${BASE_URL}/users/interests`, opts)
         .then(resp => resp.json());
 }
 

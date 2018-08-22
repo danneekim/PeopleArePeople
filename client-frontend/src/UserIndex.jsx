@@ -7,7 +7,10 @@ function UserIndex(props) {
             {
             props.users.map(user => {
                 return (
-                    <div key={user.id}>
+                    <div 
+                    key={user.id}
+                    onClick={()=>props.setIdToEdit(user.id)}
+                    >
                     {user.first_name} {user.last_name}
                     </div>
                 )
