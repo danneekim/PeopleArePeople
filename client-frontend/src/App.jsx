@@ -11,6 +11,7 @@ import {
   fetchInterestsByCategory,
   saveInterests,
   fetchInterests,
+  fetchUsersByInterest,
 } from './services/api';
 import './App.css';
 import { debug } from 'util';
@@ -26,10 +27,12 @@ class App extends Component {
       categories: [],
       checkedInterests: [],
       idToEdit: '',
+      matches: [],
     }
     this.createUser = this.createUser.bind(this);
     this.callingInterests = this.callingInterests.bind(this);
     this.setIdToEdit = this.setIdToEdit.bind(this);
+    this.callingMatches = this.callingMatches.bind(this);
   }
 
 
@@ -43,6 +46,12 @@ class App extends Component {
     fetchInterestsByCategory(category) 
         .then(data => this.setState({interests: data}));
   }
+
+  callingMatches(id) {
+    fetchUsersByInterest(id)
+      .then(data => this.setState({matches: data}))
+  }
+
 
   setIdToEdit(id){
     this.setState({
@@ -72,15 +81,13 @@ class App extends Component {
     .then(data => fetchInterests())
     .then(data => {
       this.setState({
-        checkedInterests: data,
+        checkedInterests: data
       })
     })
     .catch(e => {
       console.log(e);
     })
   }
-
-
 
 
   determineWhichToRender() {
@@ -96,12 +103,17 @@ class App extends Component {
           onClick={this.handleLinkClick.bind(this)}
         />;
       case 'FilterPage':
-        return <FilterPage />;
+        return <FilterPage 
+                callingInterests={this.callingInterests}
+                interests={this.state.interests} 
+                callingMatches={this.callingMatches}
+                matches={this.state.matches}
+               />;
       case 'UserIndex':
         return <UserIndex 
-          users={this.state.users} 
-          setIdToEdit={this.setIdToEdit}
-          />;
+                  users={this.state.users} 
+                  setIdToEdit={this.setIdToEdit}
+                />;
       case 'Interests':
         return <Interests 
                 users={this.state.users}
