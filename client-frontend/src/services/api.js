@@ -22,13 +22,27 @@ export function saveUser(user) {
 }
 
 
-// export function fetchInterests() {
-//     return fetch(`${BASE_URL}/interests`)
-//         .then(resp => resp.json())
-//         .catch(err => {
-//             throw Error(err);
-//         });
-// }
+
+export function saveInterests(interests) {
+    console.log(interests)
+    const opts = {
+        method: 'POST',
+        body: JSON.stringify(interests),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    return fetch(`${BASE_URL}/users/:id/interests`, opts)
+        .then(resp => resp.json());
+}
+
+export function fetchInterests() {
+    return fetch(`${BASE_URL}/interests`)
+        .then(resp => resp.json())
+        .catch(err => {
+            throw Error(err);
+        });
+}
 
 
 
