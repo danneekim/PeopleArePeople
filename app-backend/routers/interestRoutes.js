@@ -20,6 +20,12 @@ router.get('/category/:id', interestController.getOne,
 (req,res) => res.json(res.locals.interest)
 );
 
+// Route for getting users with similar interests
+// ex: localhost: 3001/interests/category/matched
+router.get('/matched/:id', interestController.getMatchedInterests,
+(req,res) => res.json(res.locals.interests)
+);
+
 
 
 

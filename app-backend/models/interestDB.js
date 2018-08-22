@@ -27,4 +27,16 @@ module.exports = {
         , id);
     },
 
+    filterByUserIdsInterest(id){
+        return db.many(`
+        SELECT first_name, last_name, cohort, horoscope
+        FROM users u
+        JOIN user_interest ui
+        ON u.id = ui.users_id
+        JOIN interests i
+        ON ui.interest_id = i.id
+        WHERE ui.interest_id = $1`
+        , id)
+    }
+
 }
