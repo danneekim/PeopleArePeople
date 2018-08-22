@@ -70,10 +70,7 @@ module.exports = {
 
   createUserInterests(req, res, next) {
     const interests = req.body;
-    
     interests[1] = interests[1].map(el => parseInt(el))
-    console.log(interests)
-    debugger;
     userModel.saveUserInterests(interests)
       .then(data => {
         res.locals.userInterests = data
