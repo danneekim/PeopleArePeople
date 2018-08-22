@@ -24,9 +24,9 @@ class Interests extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
-        console.log(this.selectCheckboxes);
-
+        const newArray = Array.from(this.selectCheckboxes)
+        console.log(newArray);
+        this.setState({ checkedItems: newArray});
         this.setState({
             hereCategory: this.state.allCategories[0]
         })
@@ -42,13 +42,6 @@ class Interests extends Component {
        } else {
          this.selectCheckboxes.add(id);
        }
-       console.log(this.selectCheckboxes)
-       
-    //    if(e.target.checked) {
-    //        this.setState(prevState => ({interests: [...prevState.interests, name]}))
-    //    } else {
-    //        this.setState(prevState => ({interests: prevState.interests.filter(el => el!== name)}))
-    //    }
     }
 
     render() {
@@ -61,7 +54,6 @@ class Interests extends Component {
                 <form onSubmit={this.handleSubmit}>
                     {
                     this.props.interests.map(interest => {
-                        console.log(interest)
                         return(
                             <div>
                             <label key={interest.id}>{interest.interests}</label>
