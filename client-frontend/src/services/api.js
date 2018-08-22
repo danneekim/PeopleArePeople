@@ -9,6 +9,7 @@ export function fetchUsers() {
 }
 
 
+
 export function saveUser(user) {
     const opts = {
         method: 'POST',
@@ -45,9 +46,16 @@ export function fetchInterests() {
 }
 
 
-
 export function fetchInterestsByCategory(category) {
     return fetch(`${BASE_URL}/interests/${category}`)
+        .then(resp => resp.json())
+        .catch(err => {
+            throw Error(err);
+        });
+}
+
+export function fetchUsersByInterest(id) {
+    return fetch(`${BASE_URL}/interests/matched/${id}`)
         .then(resp => resp.json())
         .catch(err => {
             throw Error(err);
