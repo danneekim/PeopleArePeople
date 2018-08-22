@@ -39,7 +39,8 @@ function FilterPage(props){
                 <div>
                     {props.matches.map(match => {
                         return(
-                            <div key={match.user.id}>
+                            <div key={match.id}>
+                            {match.first_name}
                             </div>
                         )
                     })
