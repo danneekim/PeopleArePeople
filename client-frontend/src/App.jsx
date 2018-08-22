@@ -9,6 +9,8 @@ import {
   fetchUsers,
   saveUser,
   fetchInterestsByCategory,
+  saveInterests,
+  fetchInterests,
 } from './services/api';
 import './App.css';
 import { debug } from 'util';
@@ -21,6 +23,7 @@ class App extends Component {
       users: [],
       interests: [],
       categories: [],
+      checkedInterests: [],
     }
     this.createUser = this.createUser.bind(this);
     this.callingInterests = this.callingInterests.bind(this);
@@ -54,6 +57,21 @@ class App extends Component {
     })
   }
 
+  createInterests(final) {
+    saveInterests(final)
+    .then(data => fetchInterests())
+    .then(data => {
+      this.setState({
+        checkedInterests: data,
+      })
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  }
+
+
+
 
   determineWhichToRender() {
     const { currentView } = this.state;
@@ -72,7 +90,12 @@ class App extends Component {
       case 'UserIndex':
         return <UserIndex users={this.state.users} />;
       case 'Interests':
-        return <Interests interests={this.state.interests} callingInterests={this.callingInterests}/>; //don't need to put state because it's a function
+        return <Interests 
+                users={this.state.users}
+                interests={this.state.interests} 
+                callingInterests={this.callingInterests}
+                onSubmit={this.createInterests}
+                />; //don't need to put state because it's a function
       default:
       }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 
+
 class Interests extends Component {
     constructor(props) {
         super(props);
@@ -9,40 +10,94 @@ class Interests extends Component {
             hereCategory: [],
             allCategories: ['Music', 'Sports', 'Movies', 'DIY', 'Pet-Peeves'],
             checkedItems: [],
+            userId: '',
         
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
     
-    // Reference this.selectCheckboxes from: http://react.tips/checkboxes-in-react/
+    last() {
+        this.props.users.map( user => {
+            if (user.id === (this.props.users.length )) {
+                this.setState({ userId: user.id})
+            }
+        })
+    }
+
+
     componentDidMount() {
         this.setState({ hereCategory: 'Food' })
         this.props.callingInterests('Food');
-        this.selectCheckboxes = new Set();
+        this.last();
+    }
+
+    unCheck() {
+        let checkboxs = document.querySelectorAll(".checkbox");
+        for(let i = 0; i < checkboxs.length; i += 1) {
+            checkboxs[i].checked = null;
+        }
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        const newArray = Array.from(this.selectCheckboxes)
-        console.log(newArray);
-        this.setState({ checkedItems: newArray});
-        this.setState({
-            hereCategory: this.state.allCategories[0]
-        })
-        this.props.callingInterests(this.state.allCategories[0]);
+        const final = [this.state.userId, this.state.checkedItems]
+        this.props.onSubmit(final);
+
+        this.setState({ checkedItems: [] })
+        this.unCheck();
+
+        if ({hereCategory: "Food"}) {
+            this.setState({
+                hereCategory: "Music"
+            })
+            this.props.callingInterests(this.state.allCategories[0])
+        }
+            
+        if ({hereCategory: "Music"}) {
+                this.setState({
+                    hereCategory: "Sports"
+                })
+                this.props.callingInterests(this.state.allCategories[1])
+        }   
+        
+        // else if ({hereCategory: "Sports"}) {
+        //     this.setState({
+        //         hereCategory: "Movies"
+        //     })
+        //     this.props.callingInterests(this.state.allCategories[2])
+        // }   else if ({hereCategory: "Movies"}) {
+        //     this.setState({
+        //         hereCategory: "DIY"
+        //     })
+        //     this.props.callingInterests(this.state.allCategories[3])
+        // }   else if ({hereCategory: "DIY"}) {
+        //     this.setState({
+        //         hereCategory: "Pet-Peeves"
+        //     })
+        //     this.props.callingInterests(this.state.allCategories[4])
+        // }
     }
+
+    // nextCall(){
+    //     console.log(this.state.hereCategory)
+    //     this.props.callingInterests(this.state.hereCategory)
+    // }
 
     handleChange(e) {
-       const id = e.target.value;
        const { interests } =  this.props.interests 
 
-       if (this.selectCheckboxes.has(id)) {
-         this.selectCheckboxes.delete(id);
+       const { id } = e.target;
+       if (e.target.checked) {
+       this.setState(prevState => ({checkedItems: [...prevState.checkedItems, id]}))
+   
        } else {
-         this.selectCheckboxes.add(id);
+         this.setState(prevState => ({checkedItems: prevState.checkedItems.filter(el => el!== id)}))
        }
     }
+
+   
+
 
     render() {
         return (
@@ -53,12 +108,13 @@ class Interests extends Component {
 
                 <form onSubmit={this.handleSubmit}>
                     {
-                    this.props.interests.map(interest => {
+                    this.props.interests.map((interest, index) => {
                         return(
-                            <div>
-                            <label key={interest.id}>{interest.interests}</label>
+                            <div key={index}>
+                            <label>{interest.interests}</label>
                             <input 
-                                type="checkbox" 
+                                type="checkbox"
+                                className = "checkbox" 
                                 id={interest.id} 
                                 name={this.state.hereCategory}
                                 value={interest.id} 
