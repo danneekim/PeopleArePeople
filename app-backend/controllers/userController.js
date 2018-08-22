@@ -68,10 +68,15 @@ module.exports = {
       .catch(e => next(e));
   },
 
-//   createUserInterests(req, res, next) {
-//     const userInterests = req.body;
-//     const id = req.params
-//   }
+  createUserInterests(req, res, next) {
+    const { interests } = req.body;
+    userModel.saveUserInterests(interests)
+      .then(data => {
+        res.locals.userInterests = data
+        next();
+      })
+      .catch(e => next(e));
+  },
 
   destroyUserInterest(req, res) {
     const userId = req.params;

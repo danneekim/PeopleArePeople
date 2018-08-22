@@ -59,11 +59,23 @@ module.exports = {
     , id);
   },
 
-
-
-//   saveUserInterests(userInterests) {
-
-//   }
+  saveUserInterests(interests) {
+    const id = interests[0];
+    const interestId = interests[1];
+    if (Array.isArray(interestId)){
+      const promises = interestId.map(intIds => 
+      db.many(`
+      INSERT INTO user_interest (users_id, interest_id)
+      VALUES ($1, $2)
+      RETURNING *`, [id, intIds]));
+      return Promise.all(promises);
+    } else {
+      return db.one(`
+      INSERT INTO user_interest (users_id, interest_id)
+      VALUES ($1, $2)
+      RETURNING *`, interests)
+    }
+  },
 
   deleteUserInterest(id) {
     return db.none(`
