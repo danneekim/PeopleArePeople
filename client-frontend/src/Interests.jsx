@@ -46,37 +46,32 @@ class Interests extends Component {
 
         this.setState({ checkedItems: [] })
         this.unCheck();
-
         if ({hereCategory: "Food"}) {
             this.setState({
                 hereCategory: "Music"
             })
             this.props.callingInterests(this.state.allCategories[0])
+        } else if ({hereCategory: "Music"}) {
+            this.setState({
+                hereCategory: "Sports"
+            })
+            this.props.callingInterests(this.state.allCategories[1])
+        }   else if ({hereCategory: "Sports"}) {
+            this.setState({
+                hereCategory: "Movies"
+            })
+            this.props.callingInterests(this.state.allCategories[2])
+        }   else if ({hereCategory: "Movies"}) {
+            this.setState({
+                hereCategory: "DIY"
+            })
+            this.props.callingInterests(this.state.allCategories[3])
+        }   else if ({hereCategory: "DIY"}) {
+            this.setState({
+                hereCategory: "Pet-Peeves"
+            })
+            this.props.callingInterests(this.state.allCategories[4])
         }
-            
-        if ({hereCategory: "Music"}) {
-                this.setState({
-                    hereCategory: "Sports"
-                })
-                this.props.callingInterests(this.state.allCategories[1])
-        }   
-        
-        // else if ({hereCategory: "Sports"}) {
-        //     this.setState({
-        //         hereCategory: "Movies"
-        //     })
-        //     this.props.callingInterests(this.state.allCategories[2])
-        // }   else if ({hereCategory: "Movies"}) {
-        //     this.setState({
-        //         hereCategory: "DIY"
-        //     })
-        //     this.props.callingInterests(this.state.allCategories[3])
-        // }   else if ({hereCategory: "DIY"}) {
-        //     this.setState({
-        //         hereCategory: "Pet-Peeves"
-        //     })
-        //     this.props.callingInterests(this.state.allCategories[4])
-        // }
     }
 
     // nextCall(){
