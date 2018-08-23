@@ -1,6 +1,15 @@
 import React from 'react'
 
 function FilterPage(props){
+
+    let emptyMessage = null; 
+
+    if(props.selectedCategory && props.selectedInterests && props.matches.length === 0){
+        emptyMessage = 'Sorry you have no matches!';
+    }
+
+    // the if statement: if all the items are strictly zero, it will show this message 
+
     return(
         <div>
             <span>Filter by:</span>
@@ -37,6 +46,10 @@ function FilterPage(props){
                     })}
                 </div>
                 <div>
+
+                    { emptyMessage ? <div className="emptyMessage">{ emptyMessage}</div> : null}
+                    {/* returns the called emptyMessage if statement returns true */}
+
                     {props.matches.map(match => {
                         return(
                             <div key={match.id}>

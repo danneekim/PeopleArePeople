@@ -42,8 +42,14 @@ module.exports = {
                 res.locals.interests = interests;
                 next();
             })
-            .catch(e => next(e));
+            .catch(e => {
+                //handles the error just in case we hit a 500
+                if(e.message === "No data returned from the query."){
+                    res.locals.interests = [];
+                    return next();
+                }
+                next(e)
+            });
     }
-
-
 }
+
