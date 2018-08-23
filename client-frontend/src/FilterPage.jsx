@@ -47,7 +47,7 @@ function FilterPage(props){
                 </div>
                 <div>
 
-                    { emptyMessage ? <div className="emptyMessage">{ emptyMessage}</div> : null}
+                    { emptyMessage ? <div className="emptyMessage">{emptyMessage}</div> : null}
                     {/* returns the called emptyMessage if statement returns true */}
 
                     {props.matches.map(match => {
