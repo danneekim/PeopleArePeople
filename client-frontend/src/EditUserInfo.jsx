@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EditInterests from './EditInterests';
 
 
 class EditUserInfo extends Component {
@@ -28,6 +29,7 @@ class EditUserInfo extends Component {
 
 render(){
     return(
+        <div className='bigContainer'>
         <div className='interests'>
             <div>
             You are editing user id:
@@ -71,7 +73,15 @@ render(){
                         value="Update user"
                     />
                     </form>
-
+                    <div>
+                        <br></br><br></br>
+                    <EditInterests 
+                    oneUserInterests={this.props.oneUserInterests}
+                    removeRemove={this.props.removeRemove} 
+                    userToEdit={this.props.userToEdit}
+                    />
+                    </div>
+        </div>
         </div>
     )
 }

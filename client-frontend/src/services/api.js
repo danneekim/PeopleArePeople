@@ -74,10 +74,32 @@ export function fetchInterestsByCategory(category) {
         });
 }
 
+export function fetchInterestsByUserId(id) {
+    return fetch(`${BASE_URL}/users/${id}/interests`)
+        .then(resp => resp.json())
+        .catch(err => {
+            throw Error(err);
+        })
+}
+
+
 export function fetchUsersByInterest(id) {
     return fetch(`${BASE_URL}/interests/matched/${id}`)
         .then(resp => resp.json())
         .catch(err => {
             throw Error(err);
         });
+}
+
+export function removeInterest(userId, interestId) {
+    console.log(interestId)
+    const opts = {
+        method: 'DELETE',
+        body: JSON.stringify(interestId),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    return fetch(`${BASE_URL}/users/${userId}/interests`, opts)
+        .then(resp => resp.json());
 }
