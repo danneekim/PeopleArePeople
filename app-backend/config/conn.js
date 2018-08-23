@@ -1,5 +1,6 @@
 const pgp = require('pg-promise')();
 
+// Name of our DB
 const opts = process.env.DATABASE_URL || {
   database: 'project3_db'
 };

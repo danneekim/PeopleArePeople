@@ -26,9 +26,4 @@ router.get('/matched/:id', interestController.getMatchedInterests,
 (req,res) => res.json(res.locals.interests)
 );
 
-
-
-
-
-
 module.exports = router;

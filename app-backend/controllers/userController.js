@@ -56,8 +56,11 @@ module.exports = {
       });
   },
 
-  /*JOIN START HERE: */
+  /*
+  ============   JOIN TABLE REQ'S BEGIN HERE   =============:
+  */
 
+  // Send req to DB and select users interests
   getAllUserInterests(req, res, next) {
     const id = req.params.id;
     userModel.findUserInterests(id)
@@ -68,6 +71,7 @@ module.exports = {
       .catch(e => next(e));
   },
 
+  // Send req to DB to create a users interests for matching
   createUserInterests(req, res, next) {
     const interests = req.body;
     interests[1] = interests[1].map(el => parseInt(el))
@@ -79,6 +83,7 @@ module.exports = {
       .catch(e => next(e));
   },
 
+  // Send req to DB to delete a users interests if requested
   destroyUserInterest(req, res) {
     const userId = req.params.id;
     const { interestId } = req.body;
@@ -87,7 +92,6 @@ module.exports = {
         res.json({ message: 'Interest deleted' });
       })
       .catch(e => {
-        console.log(e);
         res.status(400).json(e);
       });
   }

@@ -1,5 +1,6 @@
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 
+// Fetch all users from DB
 export function fetchUsers() {
     return fetch(`${BASE_URL}/users`)
         .then(resp => resp.json())
@@ -8,6 +9,7 @@ export function fetchUsers() {
         });
 }
 
+// Fetch a single user to display for editing
 export function fetchOneUser(id) {
     return fetch (`${BASE_URL}/users/${id}`)
         .then(resp => resp.json())
@@ -16,8 +18,7 @@ export function fetchOneUser(id) {
         });
 }
 
-
-
+// Save a new users information
 export function saveUser(user) {
     const opts = {
         method: 'POST',
@@ -30,6 +31,7 @@ export function saveUser(user) {
         .then(resp => resp.json());
 }
 
+// Update a single users information (name, cohort and horoscope)
 export function updateUser(user, id) {
     const opts ={
         method: 'PUT',
@@ -42,8 +44,7 @@ export function updateUser(user, id) {
         .then(resp => resp.json());
 }
 
-
-
+// Save a users interests after creation 
 export function saveInterests(interests) {
     console.log(interests)
     const opts = {
@@ -57,6 +58,7 @@ export function saveInterests(interests) {
         .then(resp => resp.json());
 }
 
+// Show all interests to the users
 export function fetchInterests() {
     return fetch(`${BASE_URL}/interests`)
         .then(resp => resp.json())
@@ -65,7 +67,7 @@ export function fetchInterests() {
         });
 }
 
-
+// Show all interests for a specific category
 export function fetchInterestsByCategory(category) {
     return fetch(`${BASE_URL}/interests/${category}`)
         .then(resp => resp.json())
@@ -74,6 +76,7 @@ export function fetchInterestsByCategory(category) {
         });
 }
 
+// Show all interests for a user to delete
 export function fetchInterestsByUserId(id) {
     return fetch(`${BASE_URL}/users/${id}/interests`)
         .then(resp => resp.json())
@@ -82,7 +85,7 @@ export function fetchInterestsByUserId(id) {
         })
 }
 
-
+// Display all users who have saved the same interest
 export function fetchUsersByInterest(id) {
     return fetch(`${BASE_URL}/interests/matched/${id}`)
         .then(resp => resp.json())
@@ -91,6 +94,7 @@ export function fetchUsersByInterest(id) {
         });
 }
 
+// Allows a user to delete a previously saved interest
 export function removeInterest(userId, interestId) {
     const opts = {
         method: 'DELETE',

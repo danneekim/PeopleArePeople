@@ -36,7 +36,6 @@ module.exports = {
     // Returns the users that have the SAME specified interest
     getMatchedInterests(req,res,next){
         const id = req.params.id
-        console.log(id);
         interestModel.filterByUserIdsInterest(id)
             .then(interests => {
                 res.locals.interests = interests;
