@@ -158,7 +158,7 @@ class App extends Component {
           interests={this.state.interests}
           callingInterests={this.callingInterests}
           onSubmit={this.createInterests}
-        />; //don't need to put state because it's a function
+        />; 
       case 'EditUserInfo':
         return <EditUserInfo
           users={this.state.users}
@@ -182,7 +182,6 @@ class App extends Component {
       'NewUser',
       'FilterPage',
       'UserIndex',
-      'Interests'
     ];
 
     return (
