@@ -33,7 +33,7 @@ class NewUser extends Component{
 
     render() {
         return(
-            <div>
+            <div className = "childContainer">
                 new user:
                 <form onSubmit={this.handleSubmit}>
                     <input 
@@ -43,6 +43,7 @@ class NewUser extends Component{
                         onChange={this.handleChange} 
                         placeholder="First name"
                     />
+                    <br/>
                     <input 
                         type='text' 
                         name='last_name'
@@ -50,6 +51,7 @@ class NewUser extends Component{
                         onChange={this.handleChange} 
                         placeholder="Last name"
                     />
+                    <br/>
                     <input 
                         type='text' 
                         name='cohort'
@@ -57,6 +59,7 @@ class NewUser extends Component{
                         onChange={this.handleChange} 
                         placeholder="Cohort"
                     />
+                    <br/>
                     <input 
                         type='text' 
                         name='horoscope'
@@ -64,6 +67,7 @@ class NewUser extends Component{
                         onChange={this.handleChange} 
                         placeholder="Horoscope" 
                     />
+                    <br/>
                     <input 
                         type="submit"
                         value="create new user"

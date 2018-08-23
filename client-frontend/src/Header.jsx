@@ -4,10 +4,7 @@ function Header(props) {
     const { links } = props;
     return(
         <div>
-            <span>I'm the header</span>
-            <br></br>
-            <br></br>
-        <div>
+        <div className = "parentContainer">
             {links.map(link => {
                 return<div
                     key={link}

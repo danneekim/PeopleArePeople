@@ -2,8 +2,8 @@ import React from 'react';
 
 function UserIndex(props) {
     return (
-        <div>
-            here is the list of users:
+        <div className= "childContainer">
+            <strong>here is the list of users:</strong>
             {
             props.users.map(user => {
                 return (
