@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS user_interest;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS interests;
 
--- This is our schema where we would list our table column names/properties
+-- DATABASE SCHEMA
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,

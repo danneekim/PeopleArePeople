@@ -1,5 +1,6 @@
 const pgp = require('pg-promise')();
 
+// Name of our DB
 const opts = {
   database: 'project3_db'
 };

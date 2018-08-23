@@ -1,11 +1,10 @@
 // Express Set up:
-const express = require('express');
-const path = require('path');
-const logger = require('morgan');
+const express    = require('express');
+const path       = require('path');
+const logger     = require('morgan');
 const bodyParser = require('body-parser');
-const app = express();
-
-const cors = require('cors');
+const app        = express();
+const cors       = require('cors');
 
 // PORT setup and listen:
 const PORT = process.env.PORT || 3001;

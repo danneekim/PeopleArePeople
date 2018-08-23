@@ -6,7 +6,7 @@ const { db, pgp } = require('../config/conn');
 
 module.exports = {
 
-  // Find all users method
+  // Find all users in user index
   index() {
     return db.many(`
         SELECT *
@@ -22,7 +22,7 @@ module.exports = {
         WHERE id = $1`, id)
   },
 
-  //register user in DB
+  // Register user in DB
   create(user) {
     return db.one(`
         INSERT INTO users (first_name, last_name, cohort, horoscope)
@@ -30,8 +30,8 @@ module.exports = {
         RETURNING *`, user);
   },
 
+  // Update a users information in the DB
   update(user) {
-  
     return db.one(`
       UPDATE users
       SET 
@@ -43,10 +43,15 @@ module.exports = {
       RETURNING *`, user);
   },
 
+
+
   /*
-  JOINS START HERE:
+  ==============   JOINS TABLE QUERIES BEGIN HERE   ==============
   */
 
+  
+
+  // Select all users by interest
   findUserInterests(id){
     return db.many(`
     SELECT interests, interest_id
@@ -59,6 +64,7 @@ module.exports = {
     , id);
   },
 
+  // Insert users interests into join table. If a user selects many interests, the first insert is utilized. If a user only selects one interest, second insert is utilized.
   saveUserInterests(interests) {
     const id = interests[0];
     const interestId = interests[1];
@@ -77,6 +83,7 @@ module.exports = {
     }
   },
 
+  // Delete a users interests from join if requested
   deleteUserInterest(id) {
     return db.none(`
         DELETE FROM user_interest ui

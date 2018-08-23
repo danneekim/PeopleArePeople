@@ -27,6 +27,13 @@ module.exports = {
         , id);
     },
 
+    
+
+    // ==========  JOIN TABLE QUERIES BEGIN HERE   ============:
+
+    
+
+    // Select users to display when an interest is selected in the browser:
     filterByUserIdsInterest(id){
         return db.many(`
         SELECT first_name, last_name, cohort, horoscope
