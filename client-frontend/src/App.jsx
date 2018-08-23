@@ -8,11 +8,13 @@ import Interests from './Interests';
 import 'bulma/css/bulma.css'
 import {
   fetchUsers,
+  fetchOneUser,
   saveUser,
   fetchInterestsByCategory,
   saveInterests,
   fetchInterests,
   fetchUsersByInterest,
+  updateUser,
 } from './services/api';
 import './App.css';
 import { debug } from 'util';
@@ -28,6 +30,7 @@ class App extends Component {
       categories: [],
       checkedInterests: [],
       idToEdit: '',
+      userToEdit: [],
       matches: [],
       selectedCategory: null,
       selectedInterests: null,
@@ -37,6 +40,7 @@ class App extends Component {
     this.callingInterests = this.callingInterests.bind(this);
     this.setIdToEdit = this.setIdToEdit.bind(this);
     this.callingMatches = this.callingMatches.bind(this);
+    this.updateOne = this.updateOne.bind(this);
   }
 
 
@@ -71,6 +75,8 @@ class App extends Component {
       idToEdit: id,
       currentView: "EditUserInfo",
     })
+    fetchOneUser(id)
+      .then(data => this.setState({userToEdit: data}))
   }
 
 
@@ -89,6 +95,21 @@ class App extends Component {
       })
   }
 
+  updateOne(user, id) {
+    updateUser(user, id)
+      .then(data => fetchUsers())
+      .then(data => {
+        this.setState({
+          currentView: "UserIndex",
+          users: data,
+        })
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
+
+
   createInterests(final) {
     saveInterests(final)
       .then(data => fetchInterests())
@@ -101,6 +122,8 @@ class App extends Component {
         console.log(e);
       })
   }
+
+
 
 
   determineWhichToRender() {
@@ -140,6 +163,9 @@ class App extends Component {
         return <EditUserInfo
           users={this.state.users}
           idToEdit={this.state.idToEdit}
+          userToEdit={this.state.userToEdit}
+          callOneUser={this.callOneUser}
+          updateOne={this.updateOne}
         />
       default:
     }
