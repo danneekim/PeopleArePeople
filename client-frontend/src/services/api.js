@@ -8,6 +8,14 @@ export function fetchUsers() {
         });
 }
 
+export function fetchOneUser(id) {
+    return fetch (`${BASE_URL}/users/${id}`)
+        .then(resp => resp.json())
+        .catch(err => {
+            throw Error(err);
+        });
+}
+
 
 
 export function saveUser(user) {
@@ -19,6 +27,18 @@ export function saveUser(user) {
         }
     }
     return fetch(`${BASE_URL}/users`, opts)
+        .then(resp => resp.json());
+}
+
+export function updateUser(user, id) {
+    const opts ={
+        method: 'PUT',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    }
+    return fetch(`${BASE_URL}/users/${id}`, opts)
         .then(resp => resp.json());
 }
 
