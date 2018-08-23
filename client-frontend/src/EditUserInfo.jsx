@@ -29,8 +29,7 @@ class EditUserInfo extends Component {
 
 render(){
     return(
-        <div className='bigContainer'>
-        <div className='interests'>
+        <div className = "childContainer">
             <div>
             You are editing user id:
             {this.props.idToEdit}
@@ -54,6 +53,7 @@ render(){
                         onChange={this.handleChange} 
                         placeholder={this.props.userToEdit.last_name}
                     />
+                    <br/>
                     <input 
                         type='text' 
                         name='cohort'
@@ -68,6 +68,7 @@ render(){
                         onChange={this.handleChange} 
                         placeholder={this.props.userToEdit.horoscope}  
                     />
+                    <br/>
                     <input 
                         type="submit"
                         value="Update user"
@@ -81,7 +82,6 @@ render(){
                     userToEdit={this.props.userToEdit}
                     />
                     </div>
-        </div>
         </div>
     )
 }

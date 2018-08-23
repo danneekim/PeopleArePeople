@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import SplashPage from './SplashPage';
 import NewUser from './NewUser';
 import UserIndex from './UserIndex';
 import FilterPage from './FilterPage';
@@ -139,17 +138,11 @@ class App extends Component {
     })
   }
  
-
-
-
-
   determineWhichToRender() {
     const { currentView } = this.state;
     const { user } = this.state;
 
     switch (currentView) {
-      case 'SplashPage':
-        return <SplashPage />;
       case 'NewUser':
         return <NewUser
           onSubmit={this.createUser}
@@ -197,22 +190,20 @@ class App extends Component {
 
   render() {
     const links = [
-      'SplashPage',
+
       'NewUser',
       'FilterPage',
       'UserIndex',
     ];
 
     return (
-      <div className='bigContainer'>
-        <div className='Nav'>
+        <div className = "grandparentContainer">
           {/* <div className='Nav'> */}
           <Header
             onClick={this.handleLinkClick.bind(this)}
             links={links} />
           {this.determineWhichToRender()}
         </div>
-      </div>
     )
   }
 }

@@ -102,11 +102,11 @@ class Interests extends Component {
 
     render() {
         return (
-            <div className='interests'>
+            <div className='childContainer'>
             <div>   
-                <div>  
-                    Welcome {this.state.userFirstName} {this.state.userLastName}, tell us more about your self:
-                </div><br></br>
+                 
+                Welcome {this.state.userFirstName} {this.state.userLastName}, tell us more about your self:
+                <br></br>
 
                {this.state.hereCategory} 
                <br></br><br></br>
