@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Interests from './Interests';
 
 
-class NewUser extends Component{
+class NewUser extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -21,7 +21,7 @@ class NewUser extends Component{
 
     }
 
-    handleChange(e){
+    handleChange(e) {
         const { name, value } = e.target;
         this.setState({
             [name]: value
@@ -32,47 +32,49 @@ class NewUser extends Component{
 
 
     render() {
-        return(
-            <div className = "childContainer">
-                new user:
-                <form onSubmit={this.handleSubmit}>
-                    <input 
-                        type='text' 
-                        name='first_name'
-                        value={this.state.first_name}
-                        onChange={this.handleChange} 
-                        placeholder="First name"
-                    />
-                    <br/>
-                    <input 
-                        type='text' 
-                        name='last_name'
-                        value={this.state.last_name} 
-                        onChange={this.handleChange} 
-                        placeholder="Last name"
-                    />
-                    <br/>
-                    <input 
-                        type='text' 
-                        name='cohort'
-                        value={this.state.cohort} 
-                        onChange={this.handleChange} 
-                        placeholder="Cohort"
-                    />
-                    <br/>
-                    <input 
-                        type='text' 
-                        name='horoscope'
-                        value={this.state.horoscope}
-                        onChange={this.handleChange} 
-                        placeholder="Horoscope" 
-                    />
-                    <br/>
-                    <input 
-                        type="submit"
-                        value="create new user"
-                    />
+        return (
+            <div className="childWrapper">
+                <div className="childContainer">
+                    <form onSubmit={this.handleSubmit}>
+                        <h4>Create a Profile:</h4>
+                        <input
+                            type='text'
+                            name='first_name'
+                            value={this.state.first_name}
+                            onChange={this.handleChange}
+                            placeholder="First name"
+                        />
+                        <br />
+                        <input
+                            type='text'
+                            name='last_name'
+                            value={this.state.last_name}
+                            onChange={this.handleChange}
+                            placeholder="Last name"
+                        />
+                        <br />
+                        <input
+                            type='text'
+                            name='cohort'
+                            value={this.state.cohort}
+                            onChange={this.handleChange}
+                            placeholder="Cohort"
+                        />
+                        <br />
+                        <input
+                            type='text'
+                            name='horoscope'
+                            value={this.state.horoscope}
+                            onChange={this.handleChange}
+                            placeholder="Horoscope"
+                        />
+                        <br />
+                        <input
+                            type="submit"
+                            value="Ready, Set, MINGLE!"
+                        />
                     </form>
+                </div>
             </div>
         )
     }
