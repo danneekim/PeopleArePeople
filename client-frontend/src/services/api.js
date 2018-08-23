@@ -92,14 +92,13 @@ export function fetchUsersByInterest(id) {
 }
 
 export function removeInterest(userId, interestId) {
-    console.log(interestId)
     const opts = {
         method: 'DELETE',
-        body: JSON.stringify(interestId),
+        body: JSON.stringify({ interestId }),
         headers: {
             'Content-Type': 'application/json'
         }
     }
     return fetch(`${BASE_URL}/users/${userId}/interests`, opts)
-        .then(resp => resp.json());
+        .then(resp => resp.json())
 }

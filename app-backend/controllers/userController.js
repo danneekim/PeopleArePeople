@@ -80,9 +80,9 @@ module.exports = {
   },
 
   destroyUserInterest(req, res) {
-    const userId = req.params;
-    const interestId = req.body;
-    userModel.deleteUserInterest({ ...userId, ...interestId })
+    const userId = req.params.id;
+    const { interestId } = req.body;
+    userModel.deleteUserInterest({ id: userId, interest_id: interestId })
       .then(() => {
         res.json({ message: 'Interest deleted' });
       })

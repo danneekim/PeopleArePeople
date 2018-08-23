@@ -49,7 +49,7 @@ module.exports = {
 
   findUserInterests(id){
     return db.many(`
-    SELECT interests
+    SELECT interests, interest_id
     FROM interests i
     JOIN user_interest ui
     ON i.id = ui.interest_id

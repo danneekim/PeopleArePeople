@@ -129,11 +129,16 @@ class App extends Component {
       })
   }
 
-  removeRemove(userId, interestId){
+  removeRemove(userId, interestId) {
     removeInterest(userId, interestId)
-    .then(res => res.send(200))
+    .then(data => fetchInterestsByUserId(userId))
+    .then(data => {
+      this.setState({
+        oneUserInterests: data,
+      })
+    })
   }
-
+ 
 
 
 
