@@ -19,7 +19,5 @@
     "nodemon": "^1.18.3",
     "pg-promise": "^8.4.6"
   },
-  "devDependencies": {
-    "eslint": "^5.4.0"
-  }
+  "devDependencies": {}
 }
