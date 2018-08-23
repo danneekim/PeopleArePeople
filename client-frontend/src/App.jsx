@@ -15,6 +15,8 @@ import {
   fetchInterests,
   fetchUsersByInterest,
   updateUser,
+  fetchInterestsByUserId,
+  removeInterest,
 } from './services/api';
 import './App.css';
 import { debug } from 'util';
@@ -34,6 +36,7 @@ class App extends Component {
       matches: [],
       selectedCategory: null,
       selectedInterests: null,
+      oneUserInterests: [],
       //we want to declare these variables because we're going to use them in the filterpage later
     }
     this.createUser = this.createUser.bind(this);
@@ -41,6 +44,7 @@ class App extends Component {
     this.setIdToEdit = this.setIdToEdit.bind(this);
     this.callingMatches = this.callingMatches.bind(this);
     this.updateOne = this.updateOne.bind(this);
+    this.removeRemove = this.removeRemove.bind(this);
   }
 
 
@@ -77,6 +81,8 @@ class App extends Component {
     })
     fetchOneUser(id)
       .then(data => this.setState({userToEdit: data}))
+    fetchInterestsByUserId(id)
+      .then(data => this.setState({oneUserInterests: data}))
   }
 
 
@@ -123,6 +129,12 @@ class App extends Component {
       })
   }
 
+  removeRemove(userId, interestId){
+    removeInterest(userId, interestId)
+    .then(res => res.send(200))
+  }
+
+
 
 
 
@@ -166,6 +178,8 @@ class App extends Component {
           userToEdit={this.state.userToEdit}
           callOneUser={this.callOneUser}
           updateOne={this.updateOne}
+          oneUserInterests={this.state.oneUserInterests}
+          removeRemove={this.removeRemove}
         />
       default:
     }
