@@ -17,7 +17,7 @@ app.listen(PORT, () => {
 app.use(logger('dev'));
 // BodyParser Set up:
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Cors Set up: 
 app.use(cors());
