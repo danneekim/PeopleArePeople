@@ -102,38 +102,41 @@ class Interests extends Component {
 
     render() {
         return (
-            <div className='childContainer'>
-            <div>   
+            <div className = "childWrapper">
+                <div className='childContainer'>
+                <div>   
+
+                    
+                   
+
+                   
                  
-                Welcome {this.state.userFirstName} {this.state.userLastName}, tell us more about your self:
-                <br></br>
 
-               {this.state.hereCategory} 
-               <br></br><br></br>
+                </div>
 
-            </div>
-
-                <form onSubmit={this.handleSubmit}>
-                    {
-                    this.props.interests.map((interest, index) => {
-                        return(
-                            <div key={index}>
-                            <label>{interest.interests}</label>
-                            <input 
-                                type="checkbox"
-                                className = "checkbox" 
-                                id={interest.id} 
-                                name={this.state.hereCategory}
-                                value={interest.id} 
-                                onChange={this.handleChange}
-                            />
-                            <br></br>
-                            </div>
-                        )
-                    })
-                    }
-                    <input type="submit"></input>
-                </form>
+                    <form onSubmit={this.handleSubmit}>
+                        <h4>Welcome {this.state.userFirstName} {this.state.userLastName}, tell us more about your <br/> preferences when it comes to: {this.state.hereCategory} </h4>
+                        {
+                        this.props.interests.map((interest, index) => {
+                            return(
+                                <div key={index}>
+                                <label>{interest.interests}</label>
+                                <input 
+                                    type="checkbox"
+                                    className = "checkbox" 
+                                    id={interest.id} 
+                                    name={this.state.hereCategory}
+                                    value={interest.id} 
+                                    onChange={this.handleChange}
+                                />
+                                <br></br>
+                                </div>
+                            )
+                        })
+                        }
+                        <input type="submit"></input>
+                    </form>
+                </div>
             </div>
         )
     }
