@@ -32,7 +32,7 @@ class EditUserInfo extends Component {
             <div className="childWrapper">
                 <div className="childEditUserInfoContainer">
                     
-                    <p>Greetings,<br/> {this.props.userToEdit.first_name} {this.props.userToEdit.last_name}
+                    <p className="childEditParagraph">Greetings,<br/> {this.props.userToEdit.first_name} {this.props.userToEdit.last_name}
                     {/* {this.props.userToEdit.horoscope}*/} from {this.props.userToEdit.cohort},<br/> would you like to edit your user profile?
                     </p>
                    
@@ -69,6 +69,7 @@ class EditUserInfo extends Component {
                         />
                         <br />
                         <input
+                            className="childEditSubmit"
                             type="submit"
                             value="Update user"
                         />

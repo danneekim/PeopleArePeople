@@ -77,6 +77,8 @@ class Interests extends Component {
                 hereCategory: "Pet-Peeves"
             })
             this.props.callingInterests(this.state.allCategories[4])
+        } else if (here === "Pet-Peeves") {
+            this.props.turnToFilter();
         }
     }
 

@@ -17,8 +17,9 @@ function UserIndex(props) {
                             className = "userIndex"
                             key={user.id}
                             onClick={()=>props.setIdToEdit(user.id)}
-                            >
-                            {user.first_name} {user.last_name}
+                            ><ul>
+                            <li>{user.first_name} {user.last_name}</li>
+                            </ul>
                             </div>
                         )
                     })

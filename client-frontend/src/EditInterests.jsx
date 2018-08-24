@@ -9,14 +9,15 @@ function EditInterests(props){
             return(
                 <div 
                 className="editInterest"
-                key={interest.interest_id}>
+                key={interest.interest_id}> 
                     {interest.interests}
-
-                    <button type="submit"
+                <div className="editButtonSpace">
+                    <button
+                    type="submit"
                     onClick={()=>props.removeRemove((props.userToEdit.id), (interest.interest_id))}>
                         delete interest
                         </button>
-                    
+                </div>    
                 </div>
 
             )

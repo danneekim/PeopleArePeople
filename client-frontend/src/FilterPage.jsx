@@ -43,7 +43,7 @@ function FilterPage(props) {
                     <div className = "filterItems" >
                         {props.interests.map(interest => {
                             return (
-                                <div>
+                                <div className="filterButtonSpace">
                                     <button key={interest.id} onClick={() => props.callingMatches(interest.id)}>
                                         {interest.interests}
                                     </button>

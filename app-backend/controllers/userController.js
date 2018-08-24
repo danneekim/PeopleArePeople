@@ -68,7 +68,14 @@ module.exports = {
         res.locals.users = user
         next();
       })
-      .catch(e => next(e));
+      .catch(e => {
+        //handles the error just in case we hit a 500
+        if(e.message === "No data returned from the query."){
+            res.locals.interests = [];
+            return next();
+        }
+        next(e)
+    });
   },
 
   // Send req to DB to create a users interests for matching
