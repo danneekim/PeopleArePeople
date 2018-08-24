@@ -2,21 +2,30 @@ import React from 'react';
 
 function UserIndex(props) {
     return (
-        <div className= "childContainer">
-            <strong>here is the list of users:</strong>
-            {
-            props.users.map(user => {
-                return (
-                    <div 
-                    key={user.id}
-                    onClick={()=>props.setIdToEdit(user.id)}
-                    >
-                    {user.first_name} {user.last_name}
+        <div className="childWrapper">
+            <div className= "childUserIndexContainer">
+
+                    <div className="userIndexTitle">
+                    <strong>Here are our current list of users:</strong>
                     </div>
-                )
-            })
-            }
+            
+                    <div className="userIndexWrapper">
+                    {
+                    props.users.map(user => {
+                        return (
+                            <div 
+                            className = "userIndex"
+                            key={user.id}
+                            onClick={()=>props.setIdToEdit(user.id)}
+                            >
+                            {user.first_name} {user.last_name}
+                            </div>
+                        )
+                    })
+                    }
+                    </div>
             </div>
+        </div>
     )
 }
 
