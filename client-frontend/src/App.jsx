@@ -44,6 +44,7 @@ class App extends Component {
     this.callingMatches = this.callingMatches.bind(this);
     this.updateOne = this.updateOne.bind(this);
     this.removeRemove = this.removeRemove.bind(this);
+    this.turnToFilter = this.turnToFilter.bind(this);
   }
 
 
@@ -168,6 +169,7 @@ class App extends Component {
           interests={this.state.interests}
           callingInterests={this.callingInterests}
           onSubmit={this.createInterests}
+          turnToFilter={this.turnToFilter}
         />; 
       case 'EditUserInfo':
         return <EditUserInfo
@@ -186,6 +188,10 @@ class App extends Component {
 
   handleLinkClick(links) {
     this.setState({ currentView: links });
+  }
+
+  turnToFilter(){
+    this.setState({currentView: 'FilterPage'})
   }
 
   render() {
