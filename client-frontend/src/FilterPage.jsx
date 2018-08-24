@@ -13,30 +13,26 @@ function FilterPage(props) {
     return (
         <div className="childWrapper">
 
-            <div className="child2Container">  
+            <div className="childFilterContainer">  
+
                 <div>
-                    <h4>Filter BY:</h4>
+                    <h4>Find people with similar interests..</h4>
                 </div>
 
                 <div className="filterButtonsWrapper">
                     <div className="filterButtons">  
-                    <br />
-                    <button onClick={() => props.callingInterests("Food")}>
-                        Cuisine</button>
-                    <br />
-                    <button onClick={() => props.callingInterests("Music")}>
-                        Music</button>
-                    <br />
-                    <button onClick={() => props.callingInterests("Sports")}>
-                        Sports</button>
-                    <br />
-                    <button onClick={() => props.callingInterests("Movies")}>
-                        Movies</button>
 
-                    <button onClick={() => props.callingInterests("DIY")}>
-                        DIY</button>
-
-                    <button onClick={() => props.callingInterests("Pet-Peeves")}>
+                        <button onClick={() => props.callingInterests("Food")}>
+                            Cuisine</button>
+                        <button onClick={() => props.callingInterests("Music")}>
+                            Music</button>
+                        <button onClick={() => props.callingInterests("Sports")}>
+                            Sports</button>
+                        <button onClick={() => props.callingInterests("Movies")}>
+                            Movies</button>
+                        <button onClick={() => props.callingInterests("DIY")}>
+                            DIY</button>
+                        <button onClick={() => props.callingInterests("Pet-Peeves")}>
                         Pet-Peeves</button>
 
                     </div>
@@ -58,22 +54,25 @@ function FilterPage(props) {
                     </div>
                 </div>
             
-                <div>
-                        {emptyMessage ? <div className="emptyMessage">{emptyMessage}
-                    </div> : null}
-                        {/* returns the called emptyMessage if statement returns true */}
+    
+                    <div>
+                         {emptyMessage ? <div className="emptyMessage">{emptyMessage}
+                     </div> : null}
+                         {/* returns the called emptyMessage if statement returns true */}
+                         {props.matches.map(match => {
+                             return (
+                                 <div key={match.id}>
+                                    <p>{match.first_name} {match.last_name} in {match.cohort}</p>
+                                 </div>
+                                 
+                                 
+                             )
+                         })
 
-                        {props.matches.map(match => {
-                            return (
-                                <div key={match.id}>
-                                    {match.first_name}
-                                </div>
-                            )
-                        })
-
-                        }
-                    </div>
-                </div>
+                         }
+                     </div>
+                 </div>
+                
 
 
             </div>

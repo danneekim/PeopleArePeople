@@ -103,23 +103,19 @@ class Interests extends Component {
     render() {
         return (
             <div className = "childWrapper">
-                <div className='childContainer'>
-                <div>   
+                <div className='childInterestContainer'>
 
-                    
-                   
-
-                   
-                 
-
-                </div>
-
-                    <form onSubmit={this.handleSubmit}>
+                    <form
+                    onSubmit={this.handleSubmit}>
                         <h4>Welcome {this.state.userFirstName} {this.state.userLastName}, tell us more about your <br/> preferences when it comes to: {this.state.hereCategory} </h4>
+
                         {
                         this.props.interests.map((interest, index) => {
                             return(
-                                <div key={index}>
+                            <div className="interestListWrapper">  
+                                <div
+                                className="interestList"
+                                key={index}>
                                 <label>{interest.interests}</label>
                                 <input 
                                     type="checkbox"
@@ -129,13 +125,14 @@ class Interests extends Component {
                                     value={interest.id} 
                                     onChange={this.handleChange}
                                 />
-                                <br></br>
                                 </div>
+                            </div>
                             )
                         })
                         }
                         <input type="submit"></input>
                     </form>
+
                 </div>
             </div>
         )
