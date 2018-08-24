@@ -8,6 +8,24 @@
   background-repeat: no-repeat;
 }
 
+.logo{
+  position: absolute;
+  top: 45px;
+  font-size: 40px;
+  color:#363636;
+  line-height: 38px;
+  text-transform: uppercase;
+
+}
+
+.bigAre{
+  font-size: 106px;
+  padding-bottom: 18px;
+  text-transform: lowercase;
+}
+
+
+
 .parentContainer{
   display: flex;
   flex-direction: column;
