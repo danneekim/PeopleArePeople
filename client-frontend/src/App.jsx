@@ -198,7 +198,7 @@ class App extends Component {
 
     return (
         <div className = "grandparentContainer">
-          {/* <div className='Nav'> */}
+
           <Header
             onClick={this.handleLinkClick.bind(this)}
             links={links} />

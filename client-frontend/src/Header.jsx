@@ -10,8 +10,7 @@ function Header(props) {
                     key={link}
                     onClick={()=> props.onClick(link)}
                 >{link}
-                <br></br>
-                <br></br>
+                
                 </div>
             })
             }
