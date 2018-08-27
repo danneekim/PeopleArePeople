@@ -41,3 +41,16 @@ Project 3 - Group 6 - WDI Lambda
 - Elizbeth Fun
 - Dannee Kim
 - Waseem Nafisi
+
+## Resources:
+
+1. Express: v4.16.3
+2. Body-parser: v1.18.3
+3. Cors: v2.8.4
+4. Morgan: v1.9.0
+5. Nodemon: v1.18.3
+6. Pg-promise: v8.4.6
+7. React: v16.4.2
+8. Flexbox: v0.0.3
+
+

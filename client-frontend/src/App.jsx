@@ -51,7 +51,9 @@ class App extends Component {
 
   componentDidMount() {
     fetchUsers()
-      .then(data => this.setState({ users: data }))
+      .then(data => {
+        this.setState({ users: data })
+      })
   }
 
   callingInterests(category) {
