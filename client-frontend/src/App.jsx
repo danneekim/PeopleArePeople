@@ -103,9 +103,6 @@ class App extends Component {
   }
 
   updateOne(user, id) {
-    if (user.first_name === '') {
-        user.first_name = this.state.userToEdit.first_name
-  }
     updateUser(user, id)
       .then(data => fetchUsers())
       .then(data => {

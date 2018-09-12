@@ -35,6 +35,66 @@ Our app connects like-minded students together efficiently, because who has time
 3. You're able to delete interests (D, R).
 4. You can filter on categories and subcategories to see all users related to your interests (R).
 
+## Code Snippet:
+
+Multiple page form:
+
+Multiple page form. This front-end component was particularly tricky because it required that the form be repopulated on every submit, leading the user through separate sections of the form. Each repopulation was based on querying specific categories of interests, (for example, sports,  movies, music, etc.) from the backend category/interests table.  Another challenge was storing the user's recorded interests in state for the final submit function.
+
+```
+  createInterests(final) {
+    saveInterests(final)
+      .then(data => fetchInterests())
+      .then(data => {
+        this.setState({
+          checkedInterests: data
+        })
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
+
+handleSubmit(e) {
+        e.preventDefault();
+        const final = [this.state.userId, this.state.checkedItems]
+        this.props.onSubmit(final);
+
+        this.setState({ checkedItems: [] })
+        this.unCheck();
+
+        const here = this.state.hereCategory;
+        if (here === "Food") {
+            this.setState({
+                hereCategory: "Music"
+            })
+            this.props.callingInterests(this.state.allCategories[0])
+        } else if (here === "Music") {
+            this.setState({
+                hereCategory: "Sports"
+            })
+            this.props.callingInterests(this.state.allCategories[1])
+        }   else if (here === "Sports") {
+            this.setState({
+                hereCategory: "Movies"
+            })
+            this.props.callingInterests(this.state.allCategories[2])
+        }   else if (here === "Movies") {
+            this.setState({
+                hereCategory: "DIY"
+            })
+            this.props.callingInterests(this.state.allCategories[3])
+        }   else if (here === "DIY") {
+            this.setState({
+                hereCategory: "Pet-Peeves"
+            })
+            this.props.callingInterests(this.state.allCategories[4])
+        } else if (here === "Pet-Peeves") {
+            this.props.turnToFilter();
+        }
+    }
+```
+
 Project 3 - Group 6 - WDI Lambda
 
 - Shawn Hassen
