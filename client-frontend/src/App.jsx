@@ -81,15 +81,14 @@ class App extends Component {
       idToEdit: id,
       currentView: "EditUserInfo",
     })
-    fetchOneUser(id)
-      .then(data => this.setState({userToEdit: data}))
-    fetchInterestsByUserId(id)
-      .then(data => this.setState({oneUserInterests: data}))
+      fetchOneUser(id)
+        .then(data => this.setState({userToEdit: data}))
+      fetchInterestsByUserId(id)
+        .then(data => this.setState({oneUserInterests: data}))
   }
 
 
   createUser(user) {
-    console.log(user)
     saveUser(user)
       .then(data => fetchUsers())
       .then(data => {
@@ -104,6 +103,9 @@ class App extends Component {
   }
 
   updateOne(user, id) {
+    if (user.first_name === '') {
+        user.first_name = this.state.userToEdit.first_name
+  }
     updateUser(user, id)
       .then(data => fetchUsers())
       .then(data => {

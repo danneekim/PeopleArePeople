@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import EditInterests from './EditInterests';
+import { fetchOneUser } from './services/api';
 
 
 class EditUserInfo extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            first_name: '',
-            last_name: '',
-            cohort: '',
-            horoscope: '',
+            first_name: this.props.userToEdit.first_name,
+            last_name: this.props.userToEdit.last_name,
+            cohort: this.props.userToEdit.cohort,
+            horoscope: this.props.userToEdit.horoscope,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
+
     handleSubmit(e) {
         e.preventDefault();
-        this.props.updateOne((this.state), (this.props.idToEdit));
+        this.props.updateOne((this.state), (this.props.idToEdit))
+       
     }
 
     handleChange(e) {
