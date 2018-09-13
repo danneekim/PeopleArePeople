@@ -4,6 +4,8 @@ Are you looking for more friends but feel too awkward approaching classmates in 
 
 Our app connects like-minded students together efficiently, because who has time to mingle in-person these days?? To get started, register as a user and pick some interests - we'll take over from there.
 
+[People Are People!](http://earthy-lunch.surge.sh/)
+
 ## User Stories:
 
 1. I'm a General Assembly student looking to network with like-minded students.
